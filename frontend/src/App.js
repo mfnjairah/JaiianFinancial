@@ -7,6 +7,18 @@ import Register from "./pages/Register";
 import Header from "./components/Header";
 
 function App() {
+  const users = [
+    {
+      userName: "Jairah",
+      email: "jai@email.com",
+      password: "pass123",
+    },
+    {
+      userName: "Ian",
+      email: "ian@email.com",
+      password: "pass321",
+    },
+  ];
   return (
     <div className="App">
       <Router>
@@ -15,7 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<DashBoard />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/register" element={<Register users={users} />} />
           </Routes>
         </div>
       </Router>
