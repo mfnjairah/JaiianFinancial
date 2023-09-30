@@ -17,6 +17,8 @@ const Deposit = ({ users }) => {
       } else {
         setUserName("No user exists");
       }
+
+      console.log(user);
     }
   }, [accountNumber, users]);
 
