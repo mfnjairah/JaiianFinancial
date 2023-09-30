@@ -39,7 +39,6 @@ const Transfer = ({ users }) => {
 
     const storedUsers = JSON.parse(localStorage.getItem("userz")) || [];
 
-    // Find the sender and receiver based on account numbers
     const senderUser = storedUsers.find(
       (user) => user.accountNumber === sender
     );
@@ -53,26 +52,25 @@ const Transfer = ({ users }) => {
       receiverUser &&
       senderUser !== receiverUser
     ) {
-      if (senderUser.accountBalance >= sendAmount) {
-        // Parse senderUser's account balance as an integer before subtracting
+      const parsedSendAmount = parseInt(sendAmount);
+
+      if (senderUser.accountBalance >= parsedSendAmount) {
         senderUser.accountBalance = parseInt(senderUser.accountBalance);
-        senderUser.accountBalance -= parseInt(sendAmount);
+        senderUser.accountBalance -= parsedSendAmount;
 
-        // Parse receiverUser's account balance as an integer before adding
         receiverUser.accountBalance = parseInt(receiverUser.accountBalance);
-        receiverUser.accountBalance += parseInt(sendAmount);
+        receiverUser.accountBalance += parsedSendAmount;
 
-        // Update the user data in the storedUsers array
         const senderIndex = storedUsers.findIndex(
           (user) => user.accountNumber === sender
         );
         const receiverIndex = storedUsers.findIndex(
           (user) => user.accountNumber === receiver
         );
+
         storedUsers[senderIndex] = senderUser;
         storedUsers[receiverIndex] = receiverUser;
 
-        // Save the updated user data back to localStorage
         localStorage.setItem("userz", JSON.stringify(storedUsers));
 
         console.log(`Transaction successful. New balances:`);
