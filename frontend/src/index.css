@@ -1,6 +1,8 @@
 * {
   margin: 0;
   padding: 0;
+  list-style-type: none;
+  text-decoration: none;
 }
 
 body {
@@ -14,4 +16,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.flexit {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nono {
+  display: block;
 }

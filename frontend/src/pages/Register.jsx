@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import { FaUser } from "react-icons/fa";
 
 const Register = ({ users }) => {
+  const getUserData = JSON.parse(localStorage.getItem("userz"));
   const [formData, setFormData] = useState({
-    userName: "",
+    name: "",
     email: "",
+    userName: "",
     password: "",
-    confirmPassword: "",
+    accountNumber: "",
+    accountBalance: "",
+    income: "",
+    expenseCategories: [],
+    transactionHistory: [],
   });
 
   const { userName, email, password, confirmPassword } = formData;
@@ -16,12 +22,13 @@ const Register = ({ users }) => {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-    console.log(e.target.value);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    users.push(formData);
+    // users.push(formData);
+    const listUsers = [...users, formData];
+    localStorage.setItem("userz", JSON.stringify(listUsers));
     setFormData({
       userName: "",
       email: "",
@@ -89,9 +96,9 @@ const Register = ({ users }) => {
           </div>
         </form>
 
-        {users.map((user) => (
-          <li>{user.userName}</li>
-        ))}
+        {getUserData
+          ? getUserData.map((user) => <li>{user.userName}</li>)
+          : users.map((user) => <li>{user.userName}</li>)}
       </section>
     </>
   );

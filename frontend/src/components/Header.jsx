@@ -8,6 +8,25 @@ const Header = () => {
       <div className="logo">
         <Link to="/">Jaiian Financial</Link>
       </div>
+
+      <ul>
+        <li>
+          <Link to="/deposit">
+            <FaSignInAlt /> Deposit
+          </Link>
+        </li>
+        <li>
+          <Link to="/withdraw">
+            <FaUser /> Withdraw
+          </Link>
+        </li>
+        <li>
+          <Link to="/transfer">
+            <FaUser /> Transfer
+          </Link>
+        </li>
+      </ul>
+
       <ul>
         <li>
           <Link to="/login">
