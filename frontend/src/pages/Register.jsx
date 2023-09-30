@@ -1,34 +1,50 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaUser } from "react-icons/fa";
 
 const Register = ({ users }) => {
-  const getUserData = JSON.parse(localStorage.getItem("userz"));
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
     userName: "",
+    email: "",
     password: "",
-    accountNumber: "",
-    accountBalance: "",
-    income: "",
-    expenseCategories: [],
-    transactionHistory: [],
+    confirmPassword: "",
   });
 
   const { userName, email, password, confirmPassword } = formData;
 
   const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
     }));
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // users.push(formData);
-    const listUsers = [...users, formData];
-    localStorage.setItem("userz", JSON.stringify(listUsers));
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    const newUser = {
+      userName,
+      email,
+      password,
+      accountNumber: "",
+      accountBalance: "",
+      income: "",
+      expenseCategories: [],
+      transactionHistory: [],
+    };
+
+    // Create a new list of users by adding the newUser
+    const updatedUsers = [...users, newUser];
+
+    // Store the updated list of users in localStorage
+    localStorage.setItem("userz", JSON.stringify(updatedUsers));
+
+    // Clear the form data
     setFormData({
       userName: "",
       email: "",
@@ -56,6 +72,7 @@ const Register = ({ users }) => {
               value={userName}
               placeholder="Enter your username"
               onChange={onChange}
+              required
             />
           </div>
 
@@ -67,6 +84,7 @@ const Register = ({ users }) => {
               value={email}
               placeholder="Enter your email"
               onChange={onChange}
+              required
             />
           </div>
 
@@ -78,6 +96,7 @@ const Register = ({ users }) => {
               value={password}
               placeholder="Enter your password"
               onChange={onChange}
+              required
             />
           </div>
 
@@ -89,6 +108,7 @@ const Register = ({ users }) => {
               value={confirmPassword}
               placeholder="Confirm your password"
               onChange={onChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -96,9 +116,9 @@ const Register = ({ users }) => {
           </div>
         </form>
 
-        {getUserData
-          ? getUserData.map((user) => <li>{user.userName}</li>)
-          : users.map((user) => <li>{user.userName}</li>)}
+        {users.map((user) => (
+          <li key={user.userName}>{user.userName}</li>
+        ))}
       </section>
     </>
   );
