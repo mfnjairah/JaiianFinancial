@@ -73,7 +73,7 @@
     "userName": "sarahw22",
     "password": "myPass789",
     "role": "user",
-    "accountNumber": "8901234",
+    "accountNumber": "8901233",
     "accountBalance": 6700,
     "income": "5200",
     "expenseCategories": ["Dining", "Utilities", "Transportation"],

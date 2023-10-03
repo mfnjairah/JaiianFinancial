@@ -1,3 +1,12 @@
+.table-user-div {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  font-size: 10px;
+}
+
 .table-div {
   height: 100%;
   width: 80%;
@@ -17,9 +26,22 @@ td {
   padding: 10px 50px;
 }
 
+tr {
+  transition: all 0.2s;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
 .table-row {
   background-color: #b11116;
   color: #fff;
+}
+
+.table-row:hover {
+  background-color: #b11116;
 }
 
 .options {

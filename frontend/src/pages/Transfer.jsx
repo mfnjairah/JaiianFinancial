@@ -14,7 +14,7 @@ const Transfer = ({ users }) => {
 
   useEffect(() => {
     const senderUser = users.find((user) => user.accountNumber === sender);
-    const receiverUser = users.find((user) => user.accountNumber === receiver);
+    const receiverUser = users.find((user) => user.accountNumber == receiver);
 
     setSenderName(senderUser ? senderUser.name : "No sender exists.");
     setReceiverName(
@@ -43,7 +43,7 @@ const Transfer = ({ users }) => {
       (user) => user.accountNumber === sender
     );
     const receiverUser = storedUsers.find(
-      (user) => user.accountNumber === receiver
+      (user) => user.accountNumber == receiver
     );
 
     if (

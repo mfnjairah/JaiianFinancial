@@ -18,7 +18,7 @@ const Header = ({ isLoggedIn, handleLogoutBtn, currentUser }) => {
     <header className="header">
       <div className="container">
         <div>
-          <Link to="/dashboard" className="logo-div" title="Dashboard">
+          <Link to="/dashboard" className="logo-div" title="Homepage">
             <BsBank2 className="logo" />
             <span className="logo-text">JaiianFinancial</span>
           </Link>

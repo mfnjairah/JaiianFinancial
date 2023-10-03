@@ -23,6 +23,8 @@ function App() {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState();
 
+  const userID = parseInt(users[users.length - 1].accountNumber);
+
   // Global States
 
   // Login State
@@ -44,7 +46,6 @@ function App() {
 
     if (user && user.password === loginFormData.password) {
       setIsLoggedIn(true);
-      console.log(isLoggedIn);
       navigate("/dashboard");
       setLoginFormData({
         userName: "",
@@ -91,7 +92,7 @@ function App() {
       email,
       password,
       role: "user",
-      accountNumber: "",
+      accountNumber: userID + 1,
       accountBalance: "500",
       income: "",
       expenseCategories: [],
@@ -122,7 +123,6 @@ function App() {
   const handleLogoutBtn = (e) => {
     e.preventDefault();
     setIsLoggedIn(false);
-    console.log(isLoggedIn);
     navigate("/");
   };
 
