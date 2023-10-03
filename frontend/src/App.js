@@ -42,11 +42,18 @@ function App() {
     const user = users.find((user) => user.userName === loginFormData.userName);
 
     if (user && user.password === loginFormData.password) {
-      setIsLoggedIn(true);
-      navigate("/dashboard");
+      if (user.role === "admin") {
+        setIsLoggedIn(true);
+        navigate("/dashboard");
+      }
+      else {
+        setIsLoggedIn(true);
+        navigate("/dashboardUser");
+      }
     } else {
       console.log(`Wrong credentials.`);
     }
+
     setLoginFormData({
       userName: "",
       password: "",
@@ -122,6 +129,7 @@ function App() {
           <Route path="/transfer" element={<Transfer users={users} />} /> */}
         <Routes>
           <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
+            <Route element={<DashboardUser users={users} />} path="/dashboardUser" />
             <Route element={<DashBoard users={users} />} path="/dashboard" />
             <Route element={<Deposit users={users} />} path="/deposit" />
             <Route element={<Withdraw users={users} />} path="/withdraw" />
