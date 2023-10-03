@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Pages
@@ -18,8 +18,9 @@ import data from "./assets/data.json";
 
 function App() {
   const users = JSON.parse(localStorage.getItem("userz")) || data;
-  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState();
 
   // Global States
 
@@ -43,24 +44,28 @@ function App() {
     if (user && user.password === loginFormData.password) {
       setIsLoggedIn(true);
       navigate("/dashboard");
+      setLoginFormData({
+        userName: "",
+        password: "",
+      });
+      setCurrentUser(user);
     } else {
-      console.log(`Wrong credentials.`);
+      alert("Wrong credentials.");
     }
-    setLoginFormData({
-      userName: "",
-      password: "",
-    });
   };
 
   // Register State
   const [registerFormData, setRegisterFormData] = useState({
+    firstName: "",
+    lastName: "",
     userName: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
 
-  const { userName, email, password, confirmPassword } = registerFormData;
+  const { userName, email, password, confirmPassword, firstName, lastName } =
+    registerFormData;
 
   const handleRegisterChange = (e) => {
     const { name, value } = e.target;
@@ -79,9 +84,11 @@ function App() {
     }
 
     const newUser = {
+      name: firstName + " " + lastName,
       userName,
       email,
       password,
+      role: "user",
       accountNumber: "",
       accountBalance: "500",
       income: "",
@@ -97,11 +104,16 @@ function App() {
 
     // Clear the form data
     setRegisterFormData({
+      firstName: "",
+      lastName: "",
       userName: "",
       email: "",
       password: "",
       confirmPassword: "",
     });
+    setIsLoggedIn(true);
+    localStorage.setItem("loggedIn", JSON.stringify(isLoggedIn));
+    navigate("/dashboard");
   };
 
   // Logout
@@ -114,14 +126,21 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <Header isLoggedIn={isLoggedIn} handleLogoutBtn={handleLogoutBtn} />
+        <Header
+          isLoggedIn={isLoggedIn}
+          handleLogoutBtn={handleLogoutBtn}
+          currentUser={currentUser}
+        />
         {/* <Route path="/" element={<DashBoard users={users} />} />
           <Route path="/deposit" element={<Deposit users={users} />} />
           <Route path="/withdraw" element={<Withdraw users={users} />} />
           <Route path="/transfer" element={<Transfer users={users} />} /> */}
         <Routes>
           <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
-            <Route element={<DashBoard users={users} />} path="/dashboard" />
+            <Route
+              element={<DashBoard users={users} currentUser={currentUser} />}
+              path="/dashboard"
+            />
             <Route element={<Deposit users={users} />} path="/deposit" />
             <Route element={<Withdraw users={users} />} path="/withdraw" />
             <Route element={<Transfer users={users} />} path="/transfer" />

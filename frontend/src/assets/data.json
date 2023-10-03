@@ -90,8 +90,8 @@
     "userName": "jai28",
     "password": "pass123",
     "role": "admin",
-    "accountNumber": "8901234",
-    "accountBalance": 6700,
+    "accountNumber": "8231234",
+    "accountBalance": 18328,
     "income": "5200",
     "expenseCategories": ["Dining", "Utilities", "Transportation"],
     "transactionHistory": [

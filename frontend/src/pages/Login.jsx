@@ -1,50 +1,53 @@
 // import { FaSignInAlt } from "react-icons/fa";
-import { BiLogIn } from "react-icons/bi";
+import { BiLogIn, BiSolidUserCircle } from "react-icons/bi";
+import "./Login.css";
 
 const Login = ({ loginFormData, handleLoginChange, handleLoginSubmit }) => {
   const { userName, password } = loginFormData;
 
   return (
-    <>
-      <section className="heading">
-        <h1>
-          <BiLogIn /> Login
-        </h1>
-        <p>Please, login</p>
-      </section>
+    <div className="login-div">
+      <div>
+        <section className="heading-login">
+          <BiSolidUserCircle className="login-logo" />
+          <h1>Login</h1>
+        </section>
 
-      <section className="form">
-        <form onSubmit={handleLoginSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              name="userName"
-              value={userName}
-              placeholder="Enter your username"
-              onChange={handleLoginChange}
-              required
-            />
-          </div>
+        <section className="form">
+          <form onSubmit={handleLoginSubmit}>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control-login"
+                name="userName"
+                value={userName}
+                placeholder="Enter your username"
+                onChange={handleLoginChange}
+                required
+              />
+            </div>
 
-          <div className="form-group">
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              value={password}
-              placeholder="Enter your password"
-              onChange={handleLoginChange}
-              required
-            />
-          </div>
+            <div className="form-group">
+              <input
+                type="password"
+                className="form-control-login"
+                name="password"
+                value={password}
+                placeholder="Enter your password"
+                onChange={handleLoginChange}
+                required
+              />
+            </div>
 
-          <div className="form-group">
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-      </section>
-    </>
+            <div className="form-group">
+              <button type="submit" className="login-btn">
+                <BiLogIn />
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
   );
 };
 

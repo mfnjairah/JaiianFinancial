@@ -8,12 +8,12 @@ import {
   BiLogOut,
 } from "react-icons/bi";
 import { SiGnuprivacyguard } from "react-icons/si";
-import { BsBank2 } from "react-icons/bs";
+import { BsBank2, BsFillDatabaseFill } from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
-const Header = ({ isLoggedIn, handleLogoutBtn }) => {
+const Header = ({ isLoggedIn, handleLogoutBtn, currentUser }) => {
   return (
     <header className="header">
       <div className="container">
@@ -26,6 +26,13 @@ const Header = ({ isLoggedIn, handleLogoutBtn }) => {
 
         {isLoggedIn ? (
           <ul className="navigations">
+            {currentUser.role === "admin" && (
+              <li>
+                <Link to="/dashboard" className="nav-a">
+                  <BsFillDatabaseFill title="Database" />
+                </Link>
+              </li>
+            )}
             <li>
               <Link to="/deposit" className="nav-a">
                 <RiLuggageDepositFill title="Deposit" />
@@ -41,11 +48,13 @@ const Header = ({ isLoggedIn, handleLogoutBtn }) => {
                 <BiTransferAlt title="Transfer" />
               </Link>
             </li>
-            <li>
-              <Link to="/register" className="nav-a">
-                <SiGnuprivacyguard title="Register" />
-              </Link>
-            </li>
+            {currentUser.role === "admin" && (
+              <li>
+                <Link to="/register" className="nav-a">
+                  <SiGnuprivacyguard title="Register" />
+                </Link>
+              </li>
+            )}
           </ul>
         ) : null}
 
