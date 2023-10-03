@@ -14,7 +14,7 @@ import Transfer from "./pages/Transfer";
 import data from "./assets/data.json";
 
 function App() {
-  const users = data;
+  const users = JSON.parse(localStorage.getItem("userz")) || data;
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -37,10 +37,12 @@ function App() {
     e.preventDefault();
     const user = users.find((user) => user.userName === loginFormData.userName);
 
+    console.log(user);
+
     if (user && user.password === loginFormData.password) {
       console.log(`Logged in`);
       setIsLoggedIn(true);
-      navigate("/register");
+      navigate("/");
     } else {
       console.log(`Wrong credentials.`);
     }
