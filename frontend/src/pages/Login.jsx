@@ -1,4 +1,5 @@
-import { FaSignInAlt } from "react-icons/fa";
+// import { FaSignInAlt } from "react-icons/fa";
+import { BiLogIn } from "react-icons/bi";
 
 const Login = ({ loginFormData, handleLoginChange, handleLoginSubmit }) => {
   const { userName, password } = loginFormData;
@@ -7,7 +8,7 @@ const Login = ({ loginFormData, handleLoginChange, handleLoginSubmit }) => {
     <>
       <section className="heading">
         <h1>
-          <FaSignInAlt /> Login
+          <BiLogIn /> Login
         </h1>
         <p>Please, login</p>
       </section>

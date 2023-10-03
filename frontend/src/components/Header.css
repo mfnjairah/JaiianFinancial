@@ -1,0 +1,55 @@
+/* Globals */
+
+/* Header */
+
+.header {
+  background-color: #fff;
+  box-shadow: 1px 1px 5px 1px #c5c5c5;
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
+  padding: 15px 0;
+}
+
+.navigations {
+  display: flex;
+}
+
+.nav-a {
+  color: #b11116;
+  font-size: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 15px;
+  transition: all 0.2s;
+}
+
+.nav-a:hover {
+  color: #d5b527;
+}
+
+.logo-div {
+  font-size: 33px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 15px;
+}
+
+.logo {
+  color: #d5b527;
+  font-size: 40px;
+}
+
+.logo-text {
+  color: #b11116;
+  font-weight: bold;
+  margin-left: 5px;
+  font-size: 25px;
+}

@@ -10,6 +10,9 @@ import Deposit from "./pages/Deposit";
 import Withdraw from "./pages/Withdraw";
 import Transfer from "./pages/Transfer";
 
+// Utils
+import PrivateRoute from "./utils/PrivateRoute";
+
 // Data
 import data from "./assets/data.json";
 
@@ -37,12 +40,9 @@ function App() {
     e.preventDefault();
     const user = users.find((user) => user.userName === loginFormData.userName);
 
-    console.log(user);
-
     if (user && user.password === loginFormData.password) {
-      console.log(`Logged in`);
       setIsLoggedIn(true);
-      navigate("/");
+      navigate("/dashboard");
     } else {
       console.log(`Wrong credentials.`);
     }
@@ -107,15 +107,22 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <Header />
+        <Header isLoggedIn={isLoggedIn} />
 
         <Routes>
-          <Route path="/" element={<DashBoard users={users} />} />
+          {/* <Route path="/" element={<DashBoard users={users} />} />
           <Route path="/deposit" element={<Deposit users={users} />} />
           <Route path="/withdraw" element={<Withdraw users={users} />} />
-          <Route path="/transfer" element={<Transfer users={users} />} />
+          <Route path="/transfer" element={<Transfer users={users} />} /> */}
+          <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
+            <Route element={<DashBoard users={users} />} path="/dashboard" />
+            <Route element={<Deposit users={users} />} path="/deposit" />
+            <Route element={<Withdraw users={users} />} path="/withdraw" />
+            <Route element={<Transfer users={users} />} path="/transfer" />
+          </Route>
+
           <Route
-            path="/login"
+            path="/"
             element={
               <Login
                 loginFormData={loginFormData}

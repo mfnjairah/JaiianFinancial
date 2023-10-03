@@ -1,4 +1,5 @@
-import { FaUser } from "react-icons/fa";
+// import { FaUser } from "react-icons/fa";
+import { SiGnuprivacyguard } from "react-icons/si";
 
 const Register = ({
   registerFormData,
@@ -11,7 +12,7 @@ const Register = ({
     <>
       <section className="heading">
         <h1>
-          <FaUser /> Register
+          <SiGnuprivacyguard /> Register
         </h1>
         <p>Please, create an account</p>
       </section>
