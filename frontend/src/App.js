@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Pages
 import DashBoard from "./pages/DashBoard";
@@ -20,6 +15,8 @@ import data from "./assets/data.json";
 
 function App() {
   const users = data;
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Global States
 
@@ -42,9 +39,15 @@ function App() {
 
     if (user && user.password === loginFormData.password) {
       console.log(`Logged in`);
+      setIsLoggedIn(true);
+      navigate("/register");
     } else {
       console.log(`Wrong credentials.`);
     }
+    setLoginFormData({
+      userName: "",
+      password: "",
+    });
   };
 
   // Register State
@@ -101,38 +104,36 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <div className="container">
-          <Header />
+      <div className="container">
+        <Header />
 
-          <Routes>
-            <Route path="/" element={<DashBoard users={users} />} />
-            <Route path="/deposit" element={<Deposit users={users} />} />
-            <Route path="/withdraw" element={<Withdraw users={users} />} />
-            <Route path="/transfer" element={<Transfer users={users} />} />
-            <Route
-              path="/login"
-              element={
-                <Login
-                  loginFormData={loginFormData}
-                  handleLoginChange={handleLoginChange}
-                  handleLoginSubmit={handleLoginSubmit}
-                />
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <Register
-                  registerFormData={registerFormData}
-                  handleRegisterChange={handleRegisterChange}
-                  handleRegisterSubmit={handleRegisterSubmit}
-                />
-              }
-            />
-          </Routes>
-        </div>
-      </Router>
+        <Routes>
+          <Route path="/" element={<DashBoard users={users} />} />
+          <Route path="/deposit" element={<Deposit users={users} />} />
+          <Route path="/withdraw" element={<Withdraw users={users} />} />
+          <Route path="/transfer" element={<Transfer users={users} />} />
+          <Route
+            path="/login"
+            element={
+              <Login
+                loginFormData={loginFormData}
+                handleLoginChange={handleLoginChange}
+                handleLoginSubmit={handleLoginSubmit}
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <Register
+                registerFormData={registerFormData}
+                handleRegisterChange={handleRegisterChange}
+                handleRegisterSubmit={handleRegisterSubmit}
+              />
+            }
+          />
+        </Routes>
+      </div>
     </div>
   );
 }
