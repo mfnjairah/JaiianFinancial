@@ -1,0 +1,40 @@
+.table-div {
+  height: 100%;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.table,
+th,
+td {
+  border: 1px solid #cfcdcd;
+  border-collapse: collapse;
+  padding: 10px 50px;
+}
+
+.table-row {
+  background-color: #b11116;
+  color: #fff;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.option {
+  font-size: 20px;
+  transition: all 0.2s;
+}
+
+.option:hover {
+  color: #b11116;
+  cursor: pointer;
+  font-weight: bold;
+}

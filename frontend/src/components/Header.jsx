@@ -13,7 +13,7 @@ import { FiSettings } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
-const Header = ({ isLoggedIn }) => {
+const Header = ({ isLoggedIn, handleLogoutBtn }) => {
   return (
     <header className="header">
       <div className="container">
@@ -41,6 +41,11 @@ const Header = ({ isLoggedIn }) => {
                 <BiTransferAlt title="Transfer" />
               </Link>
             </li>
+            <li>
+              <Link to="/register" className="nav-a">
+                <SiGnuprivacyguard title="Register" />
+              </Link>
+            </li>
           </ul>
         ) : null}
 
@@ -48,20 +53,20 @@ const Header = ({ isLoggedIn }) => {
           <ul className="navigations">
             <li>
               <Link to="/" className="nav-a">
-                <BiLogIn />
+                <BiLogIn title="Login" />
               </Link>
             </li>
             <li>
               <Link to="/register" className="nav-a">
-                <SiGnuprivacyguard />
+                <SiGnuprivacyguard title="Register" />
               </Link>
             </li>
           </ul>
         ) : (
           <ul className="navigations">
             <li>
-              <Link to="/" className="nav-a">
-                <BiLogOut title="Logout" />
+              <Link to="/logout" className="nav-a">
+                <BiLogOut title="Logout" onClick={handleLogoutBtn} />
               </Link>
             </li>
             <li>

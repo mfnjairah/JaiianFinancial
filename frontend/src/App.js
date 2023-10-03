@@ -104,16 +104,22 @@ function App() {
     });
   };
 
+  // Logout
+  const handleLogoutBtn = (e) => {
+    e.preventDefault();
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
   return (
     <div className="App">
       <div className="container">
-        <Header isLoggedIn={isLoggedIn} />
-
-        <Routes>
-          {/* <Route path="/" element={<DashBoard users={users} />} />
+        <Header isLoggedIn={isLoggedIn} handleLogoutBtn={handleLogoutBtn} />
+        {/* <Route path="/" element={<DashBoard users={users} />} />
           <Route path="/deposit" element={<Deposit users={users} />} />
           <Route path="/withdraw" element={<Withdraw users={users} />} />
           <Route path="/transfer" element={<Transfer users={users} />} /> */}
+        <Routes>
           <Route element={<PrivateRoute isLoggedIn={isLoggedIn} />}>
             <Route element={<DashBoard users={users} />} path="/dashboard" />
             <Route element={<Deposit users={users} />} path="/deposit" />

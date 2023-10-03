@@ -83,5 +83,22 @@
       { "date": "2023-09-20", "description": "Utilities", "amount": -200 },
       { "date": "2023-09-25", "description": "Transportation", "amount": -100 }
     ]
+  },
+  {
+    "name": "Mark Jairah",
+    "email": "jai.w@email.com",
+    "userName": "jai28",
+    "password": "pass123",
+    "role": "admin",
+    "accountNumber": "8901234",
+    "accountBalance": 6700,
+    "income": "5200",
+    "expenseCategories": ["Dining", "Utilities", "Transportation"],
+    "transactionHistory": [
+      { "date": "2023-09-10", "description": "Salary", "amount": 5200 },
+      { "date": "2023-09-15", "description": "Dining", "amount": -150 },
+      { "date": "2023-09-20", "description": "Utilities", "amount": -200 },
+      { "date": "2023-09-25", "description": "Transportation", "amount": -100 }
+    ]
   }
 ]
