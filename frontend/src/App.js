@@ -44,6 +44,7 @@ function App() {
 
     if (user && user.password === loginFormData.password) {
       setIsLoggedIn(true);
+      console.log(isLoggedIn);
       navigate("/dashboard");
       setLoginFormData({
         userName: "",
@@ -121,6 +122,7 @@ function App() {
   const handleLogoutBtn = (e) => {
     e.preventDefault();
     setIsLoggedIn(false);
+    console.log(isLoggedIn);
     navigate("/");
   };
 
