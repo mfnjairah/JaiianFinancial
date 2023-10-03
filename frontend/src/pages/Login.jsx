@@ -1,24 +1,7 @@
-import React, { useState, useEffect } from "react";
 import { FaSignInAlt } from "react-icons/fa";
 
-const Login = () => {
-  const [formData, setFormData] = useState({
-    userName: "",
-    password: "",
-  });
-
-  const { userName, password } = formData;
-
-  const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-  };
+const Login = ({ loginFormData, handleLoginChange, handleLoginSubmit }) => {
+  const { userName, password } = loginFormData;
 
   return (
     <>
@@ -30,7 +13,7 @@ const Login = () => {
       </section>
 
       <section className="form">
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleLoginSubmit}>
           <div className="form-group">
             <input
               type="text"
@@ -38,7 +21,8 @@ const Login = () => {
               name="userName"
               value={userName}
               placeholder="Enter your username"
-              onChange={onChange}
+              onChange={handleLoginChange}
+              required
             />
           </div>
 
@@ -49,7 +33,8 @@ const Login = () => {
               name="password"
               value={password}
               placeholder="Enter your password"
-              onChange={onChange}
+              onChange={handleLoginChange}
+              required
             />
           </div>
 

@@ -1,57 +1,11 @@
-import React, { useState } from "react";
 import { FaUser } from "react-icons/fa";
 
-const Register = ({ users }) => {
-  const [formData, setFormData] = useState({
-    userName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-
-  const { userName, email, password, confirmPassword } = formData;
-
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    if (password !== confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
-
-    const newUser = {
-      userName,
-      email,
-      password,
-      accountNumber: "",
-      accountBalance: "",
-      income: "",
-      expenseCategories: [],
-      transactionHistory: [],
-    };
-
-    // Create a new list of users by adding the newUser
-    const updatedUsers = [...users, newUser];
-
-    // Store the updated list of users in localStorage
-    localStorage.setItem("userz", JSON.stringify(updatedUsers));
-
-    // Clear the form data
-    setFormData({
-      userName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
-  };
+const Register = ({
+  registerFormData,
+  handleRegisterChange,
+  handleRegisterSubmit,
+}) => {
+  const { userName, email, password, confirmPassword } = registerFormData;
 
   return (
     <>
@@ -63,7 +17,7 @@ const Register = ({ users }) => {
       </section>
 
       <section className="form">
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleRegisterSubmit}>
           <div className="form-group">
             <input
               type="text"
@@ -71,7 +25,7 @@ const Register = ({ users }) => {
               name="userName"
               value={userName}
               placeholder="Enter your username"
-              onChange={onChange}
+              onChange={handleRegisterChange}
               required
             />
           </div>
@@ -83,7 +37,7 @@ const Register = ({ users }) => {
               name="email"
               value={email}
               placeholder="Enter your email"
-              onChange={onChange}
+              onChange={handleRegisterChange}
               required
             />
           </div>
@@ -95,7 +49,7 @@ const Register = ({ users }) => {
               name="password"
               value={password}
               placeholder="Enter your password"
-              onChange={onChange}
+              onChange={handleRegisterChange}
               required
             />
           </div>
@@ -107,7 +61,7 @@ const Register = ({ users }) => {
               name="confirmPassword"
               value={confirmPassword}
               placeholder="Confirm your password"
-              onChange={onChange}
+              onChange={handleRegisterChange}
               required
             />
           </div>
@@ -116,9 +70,9 @@ const Register = ({ users }) => {
           </div>
         </form>
 
-        {users.map((user) => (
+        {/* {users.map((user) => (
           <li key={user.userName}>{user.userName}</li>
-        ))}
+        ))} */}
       </section>
     </>
   );
