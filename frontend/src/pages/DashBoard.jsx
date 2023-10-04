@@ -32,13 +32,20 @@ const DashBoard = ({ users, currentUser }) => {
       }
     });
   };
-  console.log(currentUser);
 
   return (
     <div>
       <div className="table-user-div">
         <div>
           <h1>Welcome, {currentUser.name.split(" ")[0]}!</h1>
+          <h1>Account ID: {currentUser.accountNumber}</h1>
+          {/* <h1>Current Balance: {currency.format(currentBalance)}</h1> */}
+        </div>
+        <div className="align-right">
+          <h1>
+            Role:{" "}
+            {currentUser.role[0].toUpperCase() + currentUser.role.slice(1)}
+          </h1>
           <h1>Current Balance: {currency.format(currentBalance)}</h1>
         </div>
       </div>

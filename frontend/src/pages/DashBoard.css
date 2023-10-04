@@ -1,9 +1,10 @@
 .table-user-div {
   /* height: 60vh; */
-  width: 70%;
+  width: 71%;
   margin: 0 auto;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  justify-content: space-between;
   margin-top: 50px;
   font-size: 10px;
 }
@@ -60,4 +61,8 @@ tr:hover {
   color: #b11116;
   cursor: pointer;
   font-weight: bold;
+}
+
+.align-right {
+  text-align: right;
 }

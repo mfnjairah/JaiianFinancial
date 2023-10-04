@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { RiLuggageDepositFill } from "react-icons/ri";
-import { BiLogIn } from "react-icons/bi";
+import { BiLogIn, BiMoneyWithdraw } from "react-icons/bi";
 
-const Withdraw = ({ users }) => {
+const Withdraw = ({ users, currentUser }) => {
   const [formData, setFormData] = useState({
     accountNumber: "",
-    accountBalance: "",
+    withdrawAmount: "",
   });
   const [userName, setUserName] = useState("No user exists.");
 
-  const { accountNumber, accountBalance } = formData;
+  const { accountNumber, withdrawAmount } = formData;
 
   useEffect(() => {
     if (accountNumber) {
-      const user = users.find((user) => user.accountNumber === accountNumber);
+      const user = users.find((user) => user.accountNumber == accountNumber);
       if (user) {
         setUserName(user.name);
       } else {
         setUserName("No user exists.");
       }
-
-      console.log(user);
     }
   }, [accountNumber, users]);
 
@@ -34,40 +31,49 @@ const Withdraw = ({ users }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const storedUsers = JSON.parse(localStorage.getItem("userz")) || [];
+    const storedUsers = JSON.parse(localStorage.getItem("userz")) || users;
+    const withdrawAmountParsed = parseInt(withdrawAmount);
 
-    if (accountBalance >= 500) {
+    if (withdrawAmountParsed > 0) {
       const userIndex = storedUsers.findIndex(
-        (user) => user.accountNumber === accountNumber
+        (user) => user.accountNumber == accountNumber
       );
 
       if (userIndex !== -1) {
-        const updatedUsers = [...storedUsers];
-        updatedUsers[userIndex] = {
-          ...updatedUsers[userIndex],
-          accountBalance:
-            parseInt(updatedUsers[userIndex].accountBalance) -
-            parseInt(accountBalance),
-        };
-        setFormData({
-          accountNumber: "",
-          accountBalance: "",
-        });
+        const user = storedUsers[userIndex];
+        const newBalance = user.accountBalance - withdrawAmountParsed;
 
-        setUserName("No user exists.");
+        if (newBalance >= 0) {
+          user.accountBalance = newBalance;
 
-        localStorage.setItem("userz", JSON.stringify(updatedUsers));
-        alert(`Transaction successful.`);
+          const updatedUsers = [...storedUsers];
+          updatedUsers[userIndex] = user;
+
+          setFormData({
+            accountNumber: "",
+            withdrawAmount: "",
+          });
+
+          setUserName("No user exists.");
+
+          localStorage.setItem("userz", JSON.stringify(updatedUsers));
+          alert(`Transaction successful.`);
+        } else {
+          alert("Insufficient balance.");
+        }
+      } else {
+        alert("User not found.");
       }
     } else {
-      alert("Amount must be higher than 500");
+      alert("Invalid withdrawal amount.");
     }
   };
+
   return (
     <div className="deposit-div">
       <div>
         <div className="heading-deposit">
-          <RiLuggageDepositFill className="deposit-logo" />
+          <BiMoneyWithdraw className="deposit-logo" />
           <h1>Withdraw</h1>
         </div>
 
@@ -89,8 +95,8 @@ const Withdraw = ({ users }) => {
               <input
                 className="form-control-deposit"
                 type="number"
-                name="accountBalance"
-                value={accountBalance}
+                name="withdrawAmount"
+                value={withdrawAmount}
                 placeholder="Enter amount"
                 onChange={onChange}
                 required

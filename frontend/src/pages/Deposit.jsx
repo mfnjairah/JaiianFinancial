@@ -7,18 +7,19 @@ const Deposit = ({ users }) => {
   const [formData, setFormData] = useState({
     accountNumber: "",
     accountBalance: "",
+    depositAmount: "",
   });
-  const [userName, setUserName] = useState("No user exists");
+  const [userName, setUserName] = useState("No user exists.");
 
-  const { accountNumber, accountBalance } = formData;
+  const { accountNumber, accountBalance, depositAmount } = formData;
 
   useEffect(() => {
     if (accountNumber) {
-      const user = users.find((user) => user.accountNumber === accountNumber);
+      const user = users.find((user) => user.accountNumber == accountNumber);
       if (user) {
         setUserName(user.name);
       } else {
-        setUserName("No user exists");
+        setUserName("No user exists.");
       }
 
       console.log(user);
@@ -35,11 +36,11 @@ const Deposit = ({ users }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const storedUsers = JSON.parse(localStorage.getItem("userz")) || [];
+    const storedUsers = JSON.parse(localStorage.getItem("userz")) || users;
 
-    if (accountBalance >= 500) {
+    if (depositAmount >= 500) {
       const userIndex = storedUsers.findIndex(
-        (user) => user.accountNumber === accountNumber
+        (user) => user.accountNumber == accountNumber
       );
 
       if (userIndex !== -1) {
@@ -48,13 +49,16 @@ const Deposit = ({ users }) => {
           ...updatedUsers[userIndex],
           accountBalance:
             parseInt(updatedUsers[userIndex].accountBalance) +
-            parseInt(accountBalance),
+            parseInt(depositAmount),
         };
 
         setFormData({
           accountNumber: "",
           accountBalance: "",
+          depositAmount: "",
         });
+
+        setUserName("No user exists.");
 
         localStorage.setItem("userz", JSON.stringify(updatedUsers));
         alert(`Transaction successful.`);
@@ -85,13 +89,13 @@ const Deposit = ({ users }) => {
             />
           </div>
           {userName && <p className="sr-names-deposit">{userName}</p>}
-          {userName !== "No user exists" && (
+          {userName !== "No user exists." && (
             <div className="form-group">
               <input
                 className="form-control-deposit"
                 type="number"
-                name="accountBalance"
-                value={accountBalance}
+                name="depositAmount"
+                value={depositAmount}
                 placeholder="Enter amount"
                 onChange={onChange}
                 required
