@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./BankApp.css"
+import { BsFillPieChartFill } from "react-icons/bs";
+import { MdDelete } from "react-icons/md";
 
 const BankApp = ({ users, currentUser }) => {
 
@@ -7,30 +9,66 @@ const BankApp = ({ users, currentUser }) => {
     const [name, setName] = useState('');
     const [item, setItem] = useState(currentUser.budgetApplication);
 
+    
+
+    
+
     return (
-        <>
-        <h1>Budget Application:</h1>
-        <input
-            value={name}
-            onChange={e => setName(e.target.value)}
-        />
-        <input
-            value={amount}
-            onChange={e => setAmount(e.target.value)}
-        />
-        <button onClick={() => {
-            let length = item.length + 1;
-            setItem([
-            ...setItem,
-            { ID: length, ItemName: name, amount: amount }
-            ]);
-        }}>Add</button>
-        <ul>
-            {item.map(items => (
-            <li key={items.ID}>{items.ItemName} - {items.amount}</li>
-            ))}
-        </ul>
-        </>
+        <div className="main-container">
+            <div className="budget-container">
+                <BsFillPieChartFill className="icon"></BsFillPieChartFill>
+                <span className="title">Budget Application:</span>
+                <input className = "input-item-name"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    placeholder="Item Name"
+                />
+                <input className = "input-item-name"
+                    type="number"
+                    value={amount}
+                    onChange={e => setAmount(e.target.value)}
+                    placeholder="Amount"
+                />
+                <button className= "add-item-button" onClick={() => {
+                    let ids = item.map(id => {
+                        return id.ID;
+                    });
+                
+                    let maxID = Math.max(...ids) + 1;
+                    setItem([
+                    ...item,
+                    { ID: maxID, ItemName: name, amount: amount }
+                    ]);
+                    
+                }}>Add</button>
+
+
+                <table className="budget-table">
+                    <thead>
+                        <tr className="budget-table-row">
+                            <th>Item Name</th>
+                            <th>Amount</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {item.map(itim => (
+                            <tr>
+                                <td className="budget-data">{itim.ItemName}</td>
+                                <td className="budget-data">P {itim.amount}.00</td>
+                                <td className="budget-data">
+                                <button onClick={() => {
+                                    setItem(item.filter(a => a.ID !== itim.ID));
+                                }
+                                }><MdDelete />
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     );
  
 };

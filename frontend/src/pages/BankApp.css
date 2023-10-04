@@ -1,0 +1,87 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.budget-container {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 500px;
+    padding: 20px;
+    overflow: scroll;
+}
+
+.budget-container::-webkit-scrollbar {
+    display: none;
+  }
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 5px 5px 20px;
+}
+
+.icon {
+    font-size: 50px;
+    height: 50px;
+    min-height: 50px;
+}
+
+.input-item-name {
+    border: 1px solid #cfcdcd;
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 10px;
+    padding: 0 20px;
+    min-height: 40px;
+}
+
+.add-item-button {
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #b11116;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    cursor: pointer;
+    min-height: 40px;
+}
+
+.budget-table {
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.budget-table-row {
+    background-color: #b11116;
+    color: white;
+    padding: 0;
+}
+
+.budget-table-row th {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.budget-table-row:hover {
+    background-color: #b11116;
+}
+
+.budget-data {
+    border: 1px solid #b11116;
+    padding: 10px;
+    text-align: center;
+}
+
+.budget-data:hover {
+    background-color: transparent;
+}
