@@ -31,15 +31,38 @@ const DashBoard = ({ users, currentUser }) => {
       }
     });
   };
+  console.log(currentUser);
 
   return (
     <div>
-      <div className="table-user-div">
-        <div>
-          <h1>Welcome, {currentUser.name}!</h1>
-          <h1>Current Balance: {currentBalance}</h1>
+      {currentUser.role === "user" && (
+        <div className="table-user-div">
+          <div className="main-container">
+            <div className="grid-container">
+              <div className="balance-container">
+                <div className="balance-holder">
+                  <span className="balance-title">Current Balance:</span>
+                  <span className="main-balance">
+                    P{currentUser.accountBalance}.00
+                  </span>
+                </div>
+                <div className="user-info-container">
+                  <span>{currentUser.name}</span>
+                  <span>{currentUser.accountNumber}</span>
+                </div>
+              </div>
+              <button className="nav-button">Deposit</button>
+              <button className="nav-button">Withdraw</button>
+              <button className="nav-button">Send Money</button>
+              <button className="nav-button">Transactions</button>
+              <button className="nav-button budget-app-button">
+                Budget Application
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
+
       {currentUser.role === "admin" && (
         <div>
           <div className="table-div">

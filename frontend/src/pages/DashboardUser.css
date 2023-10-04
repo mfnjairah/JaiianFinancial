@@ -1,7 +1,8 @@
 
 
 .main-container {
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +12,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 10px;
-    height: 60%;
+    height: 80%;
     width: 70%;
     padding: 10px;
 }
@@ -21,11 +22,15 @@
     grid-column: 1 / span 2;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     padding: 10px;
     border: 2px solid rgb(127,29,29);
     border-radius: 15px;
     background: rgb(127,29,29);
-    background: linear-gradient(140deg, rgba(127,29,29,1) 0%, rgba(185,28,28,1) 53%, rgba(239,68,68,1) 88%, rgba(248,113,113,1) 100%);
+    background: linear-gradient(140deg, rgba(127,29,29,1) 0%, 
+    rgba(185,28,28,1) 53%, 
+    rgba(239,68,68,1) 88%, 
+    rgba(248,113,113,1) 100%);
 }
 
 .balance-title {
@@ -34,7 +39,7 @@
 }
 
 .main-balance {
-    font-size: 100px;
+    font-size: 70px;
     font-weight: 700;
     color: white;
 }
@@ -53,7 +58,23 @@
     background: linear-gradient(140deg, rgba(127,29,29,1) 0%, rgba(185,28,28,1) 53%, rgba(239,68,68,1) 88%, rgba(248,113,113,1) 100%);
 }
 
+.user-info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.user-info-container span {
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.balance-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 
 

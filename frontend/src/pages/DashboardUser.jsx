@@ -1,9 +1,10 @@
 import "./DashboardUser.css";
 
 const DashBoardUser = () => {
+
+
     return (
-        <div>
-            <div className = "main-container">
+        <div className = "main-container">
                 <div className="grid-container">
                     <div className="balance-container">
                         <span className = "balance-title">Current Balance:</span>
@@ -15,7 +16,6 @@ const DashBoardUser = () => {
                     <button className="nav-button">Transactions</button>
                     <button className="nav-button budget-app-button">Budget Application</button>
                 </div>
-            </div>
         </div>
     )
 };
