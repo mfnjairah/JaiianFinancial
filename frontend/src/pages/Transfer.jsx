@@ -21,7 +21,7 @@ const Transfer = ({ users }) => {
     setSenderName(senderUser ? senderUser.name : "No sender exists.");
     setReceiverName(
       receiverUser
-        ? receiverUser != senderUser
+        ? receiverUser.accountNumber != sender
           ? receiverUser.name
           : "Receiver can't be the sender"
         : "No receiver exists."
@@ -39,17 +39,12 @@ const Transfer = ({ users }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const storedUsers = JSON.parse(localStorage.getItem("userz")) || [];
+    const storedUsers = JSON.parse(localStorage.getItem("userz")) || users;
 
-    const senderUser = storedUsers.find(
-      (user) => user.accountNumber === sender
-    );
+    const senderUser = storedUsers.find((user) => user.accountNumber == sender);
     const receiverUser = storedUsers.find(
       (user) => user.accountNumber == receiver
     );
-
-    console.log(senderUser);
-    console.log(receiverUser);
 
     if (
       sendAmount > 0 &&
@@ -57,20 +52,17 @@ const Transfer = ({ users }) => {
       receiverUser &&
       senderUser !== receiverUser
     ) {
-      const parsedSendAmount = parseInt(sendAmount);
+      const parsedSendAmount = parseFloat(sendAmount);
 
       if (senderUser.accountBalance >= parsedSendAmount) {
-        senderUser.accountBalance = parseInt(senderUser.accountBalance);
         senderUser.accountBalance -= parsedSendAmount;
-
-        receiverUser.accountBalance = parseInt(receiverUser.accountBalance);
         receiverUser.accountBalance += parsedSendAmount;
 
         const senderIndex = storedUsers.findIndex(
-          (user) => user.accountNumber === sender
+          (user) => user.accountNumber == sender
         );
         const receiverIndex = storedUsers.findIndex(
-          (user) => user.accountNumber === receiver
+          (user) => user.accountNumber == receiver
         );
 
         storedUsers[senderIndex] = senderUser;
@@ -84,12 +76,9 @@ const Transfer = ({ users }) => {
         });
 
         setSenderName("");
-
         setReceiverName("");
 
         alert(`Transaction successful.`);
-        // console.log(`${senderUser.name}: ${senderUser.accountBalance}`);
-        // console.log(`${receiverUser.name}: ${receiverUser.accountBalance}`);
       } else {
         alert("Insufficient balance for the transaction.");
       }

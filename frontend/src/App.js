@@ -94,7 +94,7 @@ function App() {
       password,
       role: "user",
       accountNumber: userID + 1,
-      accountBalance: "500",
+      accountBalance: 500,
       income: "",
       expenseCategories: [],
       transactionHistory: [],
@@ -148,7 +148,10 @@ function App() {
             <Route element={<Deposit users={users} />} path="/deposit" />
             <Route element={<Withdraw users={users} />} path="/withdraw" />
             <Route element={<Transfer users={users} />} path="/transfer" />
-            <Route element={<Transaction users={users} currentUser={currentUser}/>} path="/transaction" />
+            <Route
+              element={<Transaction users={users} currentUser={currentUser} />}
+              path="/transaction"
+            />
             <Route element={<BankApp users={users} currentUser={currentUser}/>} path="/bankapplication" />
           </Route>
 
