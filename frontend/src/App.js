@@ -98,6 +98,7 @@ function App() {
       income: "",
       expenseCategories: [],
       transactionHistory: [],
+      budgetApplication: []
     };
 
     // Create a new list of users by adding the newUser
