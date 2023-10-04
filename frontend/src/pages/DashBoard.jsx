@@ -10,6 +10,7 @@ const DashBoard = ({ users, currentUser }) => {
   const [currentBalance, setCurrentBalance] = useState(
     currentUser.accountBalance
   );
+  const currency = new Intl.NumberFormat("en-us");
 
   useEffect(() => {
     const userDataFromLocalStorage =
@@ -35,6 +36,13 @@ const DashBoard = ({ users, currentUser }) => {
 
   return (
     <div>
+      <div className="table-user-div">
+        <div>
+          <h1>Welcome, {currentUser.name.split(" ")[0]}!</h1>
+          <h1>Current Balance: {currency.format(currentBalance)}</h1>
+        </div>
+      </div>
+
       {currentUser.role === "user" && (
         <div className="table-user-div">
           <div className="main-container">
@@ -85,7 +93,7 @@ const DashBoard = ({ users, currentUser }) => {
                     <td>{user.email}</td>
                     <td>{user.userName}</td>
                     <td>{user.accountNumber}</td>
-                    <td>{user.accountBalance}</td>
+                    <td>{currency.format(user.accountBalance)}</td>
                     <td>{user.role}</td>
                     <td>
                       <span className="options">

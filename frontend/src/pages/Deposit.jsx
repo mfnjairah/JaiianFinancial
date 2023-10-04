@@ -51,7 +51,13 @@ const Deposit = ({ users }) => {
             parseInt(accountBalance),
         };
 
+        setFormData({
+          accountNumber: "",
+          accountBalance: "",
+        });
+
         localStorage.setItem("userz", JSON.stringify(updatedUsers));
+        alert(`Transaction successful.`);
       }
     } else {
       alert("Amount must be higher than 500");

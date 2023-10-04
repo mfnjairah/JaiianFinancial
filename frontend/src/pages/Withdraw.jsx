@@ -7,7 +7,7 @@ const Withdraw = ({ users }) => {
     accountNumber: "",
     accountBalance: "",
   });
-  const [userName, setUserName] = useState("No user exists");
+  const [userName, setUserName] = useState("No user exists.");
 
   const { accountNumber, accountBalance } = formData;
 
@@ -17,7 +17,7 @@ const Withdraw = ({ users }) => {
       if (user) {
         setUserName(user.name);
       } else {
-        setUserName("No user exists");
+        setUserName("No user exists.");
       }
 
       console.log(user);
@@ -46,11 +46,18 @@ const Withdraw = ({ users }) => {
         updatedUsers[userIndex] = {
           ...updatedUsers[userIndex],
           accountBalance:
-            parseInt(updatedUsers[userIndex].accountBalance) +
+            parseInt(updatedUsers[userIndex].accountBalance) -
             parseInt(accountBalance),
         };
+        setFormData({
+          accountNumber: "",
+          accountBalance: "",
+        });
+
+        setUserName("No user exists.");
 
         localStorage.setItem("userz", JSON.stringify(updatedUsers));
+        alert(`Transaction successful.`);
       }
     } else {
       alert("Amount must be higher than 500");
@@ -77,7 +84,7 @@ const Withdraw = ({ users }) => {
             />
           </div>
           {userName && <p className="sr-names-deposit">{userName}</p>}
-          {userName !== "No user exists" && (
+          {userName !== "No user exists." && (
             <div className="form-group">
               <input
                 className="form-control-deposit"
