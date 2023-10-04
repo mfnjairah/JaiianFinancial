@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { RiLuggageDepositFill } from "react-icons/ri";
+import { BiLogIn } from "react-icons/bi";
+import "./Deposit.css";
 
 const Deposit = ({ users }) => {
   const [formData, setFormData] = useState({
@@ -56,36 +59,46 @@ const Deposit = ({ users }) => {
   };
 
   return (
-    <div>
-      <h1>Deposit</h1>
-      {userName && <p>{userName}</p>}
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <input
-            type="text"
-            name="accountNumber"
-            value={accountNumber}
-            placeholder="Enter user id"
-            onChange={onChange}
-            required
-          />
+    <div className="deposit-div">
+      <div>
+        <div className="heading-deposit">
+          <RiLuggageDepositFill className="deposit-logo" />
+          <h1>Deposit</h1>
         </div>
-        {userName !== "No user exists" && (
+
+        <form onSubmit={onSubmit}>
           <div className="form-group">
             <input
-              type="number"
-              name="accountBalance"
-              value={accountBalance}
-              placeholder="Enter amount"
+              className="form-control-deposit"
+              type="text"
+              name="accountNumber"
+              value={accountNumber}
+              placeholder="Enter user id"
               onChange={onChange}
               required
             />
           </div>
-        )}
-        <div className="form-group">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+          {userName && <p className="sr-names-deposit">{userName}</p>}
+          {userName !== "No user exists" && (
+            <div className="form-group">
+              <input
+                className="form-control-deposit"
+                type="number"
+                name="accountBalance"
+                value={accountBalance}
+                placeholder="Enter amount"
+                onChange={onChange}
+                required
+              />
+            </div>
+          )}
+          <div className="form-group">
+            <button type="submit" className="deposit-btn">
+              <BiLogIn />
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

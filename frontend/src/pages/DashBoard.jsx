@@ -2,19 +2,25 @@ import React, { useState, useEffect } from "react";
 import "./DashBoard.css";
 import { AiOutlineTransaction, AiFillEdit } from "react-icons/ai";
 import { GrNotes } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
 
 const DashBoard = ({ users, currentUser }) => {
   const [activeUsers, setActiveUsers] = useState([]);
   const [userData, setUserData] = useState([]);
+  const [currentBalance, setCurrentBalance] = useState(
+    currentUser.accountBalance
+  );
 
   useEffect(() => {
-    const userDataFromLocalStorage = JSON.parse(localStorage.getItem("userz"));
-    if (userDataFromLocalStorage) {
-      setUserData(userDataFromLocalStorage);
-    } else {
-      setUserData(users);
-    }
-  }, [users]);
+    const userDataFromLocalStorage =
+      JSON.parse(localStorage.getItem("userz")) || users;
+    setUserData(userDataFromLocalStorage);
+
+    const user = users.find(
+      (user) => user.accountNumber === currentUser.accountNumber
+    );
+    setCurrentBalance(user.accountBalance);
+  }, [users, currentUser]);
 
   const toggleUserActive = (accountNumber) => {
     setActiveUsers((prevActiveUsers) => {
@@ -31,7 +37,7 @@ const DashBoard = ({ users, currentUser }) => {
       <div className="table-user-div">
         <div>
           <h1>Welcome, {currentUser.name}!</h1>
-          <h1>Current Balance: {currentUser.accountBalance}</h1>
+          <h1>Current Balance: {currentBalance}</h1>
         </div>
       </div>
       {currentUser.role === "admin" && (

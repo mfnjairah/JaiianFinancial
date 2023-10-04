@@ -1,4 +1,4 @@
-.login-div {
+.deposit-div {
   height: 100%;
   width: 80%;
   margin: 0 auto;
@@ -9,18 +9,19 @@
   text-align: center;
 }
 
-.login-logo {
+.deposit-logo {
   font-size: 50px;
 }
 
-.heading-login h1 {
+.heading-deposit h1 {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 5px;
+  font-size: 24px;
 }
 
-.form-control-login {
+.form-control-deposit {
   border: 1px solid #cfcdcd;
   width: 300px;
   height: 40px;
@@ -30,7 +31,7 @@
   outline: none;
 }
 
-.login-btn {
+.deposit-btn {
   margin-top: 5px;
   width: 320px;
   height: 40px;
@@ -47,6 +48,12 @@
   outline: none;
 }
 
-.login-btn:hover {
+.deposit-btn:hover {
   background-color: #96060b;
+}
+
+.sr-names-deposit {
+  display: flex;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }

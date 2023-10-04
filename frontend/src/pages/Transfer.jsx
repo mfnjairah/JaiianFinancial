@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import "./Transfer.css";
+import { BiTransferAlt, BiLogIn } from "react-icons/bi";
 
 const Transfer = ({ users }) => {
   const [formData, setFormData] = useState({
@@ -13,13 +15,13 @@ const Transfer = ({ users }) => {
   const [receiverName, setReceiverName] = useState("");
 
   useEffect(() => {
-    const senderUser = users.find((user) => user.accountNumber === sender);
+    const senderUser = users.find((user) => user.accountNumber == sender);
     const receiverUser = users.find((user) => user.accountNumber == receiver);
 
     setSenderName(senderUser ? senderUser.name : "No sender exists.");
     setReceiverName(
       receiverUser
-        ? receiverUser !== senderUser
+        ? receiverUser != senderUser
           ? receiverUser.name
           : "Receiver can't be the sender"
         : "No receiver exists."
@@ -45,6 +47,9 @@ const Transfer = ({ users }) => {
     const receiverUser = storedUsers.find(
       (user) => user.accountNumber == receiver
     );
+
+    console.log(senderUser);
+    console.log(receiverUser);
 
     if (
       sendAmount > 0 &&
@@ -72,55 +77,76 @@ const Transfer = ({ users }) => {
         storedUsers[receiverIndex] = receiverUser;
 
         localStorage.setItem("userz", JSON.stringify(storedUsers));
+        setFormData({
+          sender: "",
+          receiver: "",
+          sendAmount: "",
+        });
 
-        console.log(`Transaction successful. New balances:`);
-        console.log(`${senderUser.name}: ${senderUser.accountBalance}`);
-        console.log(`${receiverUser.name}: ${receiverUser.accountBalance}`);
+        setSenderName("");
+
+        setReceiverName("");
+
+        alert(`Transaction successful.`);
+        // console.log(`${senderUser.name}: ${senderUser.accountBalance}`);
+        // console.log(`${receiverUser.name}: ${receiverUser.accountBalance}`);
       } else {
-        console.log("Insufficient balance for the transaction.");
+        alert("Insufficient balance for the transaction.");
       }
     } else {
-      console.log("Invalid sender, receiver, or send amount.");
+      alert("Invalid sender, receiver, or send amount.");
     }
   };
 
   return (
     <div>
-      <h1>Transfer</h1>
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <input
-            type="text"
-            name="sender"
-            value={sender}
-            placeholder="Sender account number"
-            onChange={onChange}
-          />
+      <div className="transfer-div">
+        <div>
+          <div className="heading-transfer">
+            <BiTransferAlt className="transfer-logo" />
+            <h1>Transfer</h1>
+          </div>
+          <form onSubmit={onSubmit}>
+            <div className="form-group">
+              <input
+                className="form-control-transfer"
+                type="text"
+                name="sender"
+                value={sender}
+                placeholder="Sender account number"
+                onChange={onChange}
+              />
+              <div className="sr-names">{senderName}</div>
+            </div>
+            <div className="form-group">
+              <input
+                className="form-control-transfer"
+                type="text"
+                name="receiver"
+                value={receiver}
+                placeholder="Receiver account number"
+                onChange={onChange}
+              />
+              <div className="sr-names">{receiverName}</div>
+            </div>
+            <div className="form-group">
+              <input
+                className="form-control-transfer"
+                type="number"
+                name="sendAmount"
+                value={sendAmount}
+                placeholder="Amount to send"
+                onChange={onChange}
+              />
+            </div>
+            <div className="form-group">
+              <button type="submit" className="transfer-btn">
+                <BiLogIn />
+              </button>
+            </div>
+          </form>
         </div>
-        <div className="form-group">
-          <input
-            type="text"
-            name="receiver"
-            value={receiver}
-            placeholder="Receiver account number"
-            onChange={onChange}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="number"
-            name="sendAmount"
-            value={sendAmount}
-            placeholder="Amount to send"
-            onChange={onChange}
-          />
-        </div>
-        <div className="form-group">
-          <button type="submit">Transfer</button>
-        </div>
-        <div>{`Sender: ${senderName}`}</div>
-        <div>{`Receiver: ${receiverName}`}</div>
-      </form>
+      </div>
     </div>
   );
 };
