@@ -10,6 +10,7 @@ import Deposit from "./pages/Deposit";
 import Withdraw from "./pages/Withdraw";
 import Transfer from "./pages/Transfer";
 import Transaction from "./pages/Transaction";
+import BankApp from "./pages/BankApp";
 
 // Utils
 import PrivateRoute from "./utils/PrivateRoute";
@@ -148,6 +149,7 @@ function App() {
             <Route element={<Withdraw users={users} />} path="/withdraw" />
             <Route element={<Transfer users={users} />} path="/transfer" />
             <Route element={<Transaction users={users} currentUser={currentUser}/>} path="/transaction" />
+            <Route element={<BankApp users={users} currentUser={currentUser}/>} path="/bankapplication" />
           </Route>
 
           <Route

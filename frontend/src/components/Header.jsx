@@ -8,7 +8,7 @@ import {
   BiLogOut,
 } from "react-icons/bi";
 import { SiGnuprivacyguard } from "react-icons/si";
-import { BsBank2, BsFillDatabaseFill } from "react-icons/bs";
+import { BsBank2, BsFillDatabaseFill, BsFillPieChartFill } from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./Header.css";
@@ -55,6 +55,15 @@ const Header = ({ isLoggedIn, handleLogoutBtn, currentUser }) => {
                 </Link>
               </li>
             )}
+
+            {currentUser.role === "user" && (
+              <li>
+                <Link to="/bankapplication" className="nav-a">
+                  <BsFillPieChartFill title="Bank Application" />
+                </Link>
+              </li>
+            )}
+
             {currentUser.role === "admin" && (
               <li>
                 <Link to="/register" className="nav-a">

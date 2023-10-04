@@ -14,6 +14,12 @@
       { "date": "2023-09-15", "description": "Groceries", "amount": -200 },
       { "date": "2023-09-20", "description": "Utilities", "amount": -150 },
       { "date": "2023-09-25", "description": "Dining", "amount": -100 }
+    ],
+    "budgetApplication": [
+      { "ID": 1, "ItemName": "Item1", "amount": 100 },
+      { "ID": 2, "ItemName": "Item2", "amount": 200 },
+      { "ID": 3, "ItemName": "Item3", "amount": 300 },
+      { "ID": 4, "ItemName": "Item4", "amount": 400}
     ]
   },
   {
@@ -31,6 +37,12 @@
       { "date": "2023-09-15", "description": "Rent", "amount": -2500 },
       { "date": "2023-09-20", "description": "Transportation", "amount": -150 },
       { "date": "2023-09-25", "description": "Entertainment", "amount": -100 }
+    ],
+    "budgetApplication": [
+      { "ID": 1, "ItemName": "Item1", "amount": 100 },
+      { "ID": 2, "ItemName": "Item2", "amount": 200 },
+      { "ID": 3, "ItemName": "Item3", "amount": 300 },
+      { "ID": 4, "ItemName": "Item4", "amount": 400}
     ]
   },
   {
@@ -48,6 +60,12 @@
       { "date": "2023-09-15", "description": "Shopping", "amount": -300 },
       { "date": "2023-09-20", "description": "Healthcare", "amount": -100 },
       { "date": "2023-09-25", "description": "Travel", "amount": -300 }
+    ],
+    "budgetApplication": [
+      { "ID": 1, "ItemName": "Item1", "amount": 100 },
+      { "ID": 2, "ItemName": "Item2", "amount": 200 },
+      { "ID": 3, "ItemName": "Item3", "amount": 300 },
+      { "ID": 4, "ItemName": "Item4", "amount": 400}
     ]
   },
   {
@@ -65,6 +83,12 @@
       { "date": "2023-09-15", "description": "Education", "amount": -500 },
       { "date": "2023-09-20", "description": "Hobbies", "amount": -200 },
       { "date": "2023-09-25", "description": "Groceries", "amount": -300 }
+    ],
+    "budgetApplication": [
+      { "ID": 1, "ItemName": "Item1", "amount": 100 },
+      { "ID": 2, "ItemName": "Item2", "amount": 200 },
+      { "ID": 3, "ItemName": "Item3", "amount": 300 },
+      { "ID": 4, "ItemName": "Item4", "amount": 400}
     ]
   },
   {
@@ -82,6 +106,12 @@
       { "date": "2023-09-15", "description": "Dining", "amount": -150 },
       { "date": "2023-09-20", "description": "Utilities", "amount": -200 },
       { "date": "2023-09-25", "description": "Transportation", "amount": -100 }
+    ],
+    "budgetApplication": [
+      { "ID": 1, "ItemName": "Item1", "amount": 100 },
+      { "ID": 2, "ItemName": "Item2", "amount": 200 },
+      { "ID": 3, "ItemName": "Item3", "amount": 300 },
+      { "ID": 4, "ItemName": "Item4", "amount": 400}
     ]
   },
   {
@@ -99,6 +129,12 @@
       { "date": "2023-09-15", "description": "Dining", "amount": -150 },
       { "date": "2023-09-20", "description": "Utilities", "amount": -200 },
       { "date": "2023-09-25", "description": "Transportation", "amount": -100 }
+    ],
+    "budgetApplication": [
+      { "ID": 1, "ItemName": "Item1", "amount": 100 },
+      { "ID": 2, "ItemName": "Item2", "amount": 200 },
+      { "ID": 3, "ItemName": "Item3", "amount": 300 },
+      { "ID": 4, "ItemName": "Item4", "amount": 400}
     ]
   }
 ]

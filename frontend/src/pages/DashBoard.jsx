@@ -43,7 +43,7 @@ const DashBoard = ({ users, currentUser }) => {
         </div>
       </div>
 
-      {currentUser.role === "user" && (
+      {/* {currentUser.role === "user" && (
         <div className="table-user-div">
           <div className="main-container">
             <div className="grid-container">
@@ -69,7 +69,7 @@ const DashBoard = ({ users, currentUser }) => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       {currentUser.role === "admin" && (
         <div>
