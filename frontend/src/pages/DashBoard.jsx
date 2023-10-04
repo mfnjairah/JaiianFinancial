@@ -35,8 +35,14 @@ const DashBoard = ({ users, currentUser }) => {
           <div className = "main-container">
                     <div className="grid-container">
                         <div className="balance-container">
-                            <span className = "balance-title">Current Balance:</span>
-                            <span className = "main-balance">P{currentUser.accountBalance}.00</span>
+                            <div className="balance-holder">
+                              <span className = "balance-title">Current Balance:</span>
+                              <span className = "main-balance">P{currentUser.accountBalance}.00</span>
+                            </div>
+                            <div className="user-info-container">
+                              <span>{currentUser.name}</span>
+                              <span>{currentUser.accountNumber}</span>
+                            </div>
                         </div>
                         <button className="nav-button">Deposit</button>
                         <button className="nav-button">Withdraw</button>

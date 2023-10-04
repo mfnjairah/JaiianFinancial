@@ -1,6 +1,6 @@
 import React from "react";
 // import { FaSignInAlt, FaUser } from "react-icons/fa";
-import { RiLuggageDepositFill } from "react-icons/ri";
+import { RiLuggageDepositFill, RiBankCard2Fill } from "react-icons/ri";
 import {
   BiMoneyWithdraw,
   BiTransferAlt,
@@ -48,6 +48,13 @@ const Header = ({ isLoggedIn, handleLogoutBtn, currentUser }) => {
                 <BiTransferAlt title="Transfer" />
               </Link>
             </li>
+            {currentUser.role === "user" && (
+              <li>
+                <Link to="/transaction" className="nav-a">
+                  <RiBankCard2Fill title="Transactions" />
+                </Link>
+              </li>
+            )}
             {currentUser.role === "admin" && (
               <li>
                 <Link to="/register" className="nav-a">

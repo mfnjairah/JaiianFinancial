@@ -22,6 +22,7 @@
     grid-column: 1 / span 2;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     padding: 10px;
     border: 2px solid rgb(127,29,29);
     border-radius: 15px;
@@ -57,7 +58,23 @@
     background: linear-gradient(140deg, rgba(127,29,29,1) 0%, rgba(185,28,28,1) 53%, rgba(239,68,68,1) 88%, rgba(248,113,113,1) 100%);
 }
 
+.user-info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.user-info-container span {
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.balance-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 
 
