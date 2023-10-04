@@ -10,9 +10,6 @@ const BankApp = ({ users, currentUser }) => {
     const [item, setItem] = useState(currentUser.budgetApplication);
 
     
-
-    
-
     return (
         <div className="main-container">
             <div className="budget-container">
@@ -39,6 +36,8 @@ const BankApp = ({ users, currentUser }) => {
                     ...item,
                     { ID: maxID, ItemName: name, amount: amount }
                     ]);
+
+                    console.log(currentUser.budgetApplication)
                     
                 }}>Add</button>
 
@@ -53,7 +52,7 @@ const BankApp = ({ users, currentUser }) => {
                     </thead>
                     <tbody>
                         {item.map(itim => (
-                            <tr>
+                            <tr key={itim.ID}>
                                 <td className="budget-data">{itim.ItemName}</td>
                                 <td className="budget-data">P {itim.amount}.00</td>
                                 <td className="budget-data">
