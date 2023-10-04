@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./DashBoard.css";
 import { AiOutlineTransaction, AiFillEdit } from "react-icons/ai";
 import { GrNotes } from "react-icons/gr";
+import "./DashboardUser.css"
 
 const DashBoard = ({ users, currentUser }) => {
   const [activeUsers, setActiveUsers] = useState([]);
@@ -25,15 +26,29 @@ const DashBoard = ({ users, currentUser }) => {
       }
     });
   };
+  console.log(currentUser)
 
   return (
     <div>
-      <div className="table-user-div">
-        <div>
-          <h1>Welcome, {currentUser.name}!</h1>
-          <h1>Current Balance: {currentUser.accountBalance}</h1>
+      { currentUser.role === "user" && (
+          <div className="table-user-div">
+          <div className = "main-container">
+                    <div className="grid-container">
+                        <div className="balance-container">
+                            <span className = "balance-title">Current Balance:</span>
+                            <span className = "main-balance">P{currentUser.accountBalance}.00</span>
+                        </div>
+                        <button className="nav-button">Deposit</button>
+                        <button className="nav-button">Withdraw</button>
+                        <button className="nav-button">Send Money</button>
+                        <button className="nav-button">Transactions</button>
+                        <button className="nav-button budget-app-button">Budget Application</button>
+                    </div>
+            </div>
         </div>
-      </div>
+      )}
+
+
       {currentUser.role === "admin" && (
         <div>
           <div className="table-div">
