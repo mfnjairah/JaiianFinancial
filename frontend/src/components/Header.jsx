@@ -58,7 +58,7 @@ const Header = ({ isLoggedIn, handleLogoutBtn, currentUser }) => {
 
             {currentUser.role === "user" && (
               <li>
-                <Link to="/bankapplication" className="nav-a">
+                <Link to="/budgetapplication" className="nav-a">
                   <BsFillPieChartFill title="Bank Application" />
                 </Link>
               </li>

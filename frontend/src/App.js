@@ -10,7 +10,7 @@ import Deposit from "./pages/Deposit";
 import Withdraw from "./pages/Withdraw";
 import Transfer from "./pages/Transfer";
 import Transaction from "./pages/Transaction";
-import BankApp from "./pages/BankApp";
+import BudgetApp from "./pages/BudgetApp";
 
 // Utils
 import PrivateRoute from "./utils/PrivateRoute";
@@ -153,7 +153,7 @@ function App() {
               element={<Transaction users={users} currentUser={currentUser} />}
               path="/transaction"
             />
-            <Route element={<BankApp users={users} currentUser={currentUser}/>} path="/bankapplication" />
+            <Route element={<BudgetApp users={users} currentUser={currentUser}/>} path="/budgetapplication" />
           </Route>
 
           <Route

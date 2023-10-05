@@ -1,9 +1,9 @@
 import { useState } from "react";
-import "./BankApp.css"
+import "./BudgetApp.css"
 import { BsFillPieChartFill } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
 
-const BankApp = ({ users, currentUser }) => {
+const BudgetApp = ({ users, currentUser }) => {
 
     const [amount, setAmount] = useState("");
     const [name, setName] = useState('');
@@ -72,4 +72,4 @@ const BankApp = ({ users, currentUser }) => {
  
 };
 
-export default BankApp;
+export default BudgetApp;
