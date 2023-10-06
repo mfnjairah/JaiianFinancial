@@ -146,7 +146,7 @@ function App() {
               element={<DashBoard users={users} currentUser={currentUser} />}
               path="/dashboard"
             />
-            <Route element={<Deposit users={users} />} path="/deposit" />
+            <Route element={<Deposit users={users} currentUser={currentUser}/>} path="/deposit" />
             <Route element={<Withdraw users={users} />} path="/withdraw" />
             <Route element={<Transfer users={users} />} path="/transfer" />
             <Route
