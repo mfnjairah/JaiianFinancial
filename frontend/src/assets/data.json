@@ -10,11 +10,11 @@
     "income": "6000",
     "expenseCategories": ["Groceries", "Utilities", "Dining"],
     "transactionHistory": [
-      { "date": "2023-09-10", "description": "Deposit", "amount": 6000 },
-      { "date": "2023-09-15", "description": "Withdraw", "amount": -200 },
-      { "date": "2023-09-20", "description": "Transfer", "amount": -150 },
-      { "date": "2023-09-25", "description": "Budget Application - Added an Item", "amount": -100 },
-      { "date": "2023-09-25", "description": "Budget Application - Removed an Item", "amount": 100 }
+      { "ID": 1, "date": "2023-09-10", "description": "Deposit", "amount": 6000 },
+      { "ID": 2, "date": "2023-09-15", "description": "Withdraw", "amount": -200 },
+      { "ID": 3, "date": "2023-09-20", "description": "Transfer", "amount": -150 },
+      { "ID": 4, "date": "2023-09-25", "description": "Budget Application - Added an Item", "amount": -100 },
+      { "ID": 5, "date": "2023-09-25", "description": "Budget Application - Removed an Item", "amount": 100 }
     ],
     "budgetApplication": [
       { "ID": 1, "ItemName": "Item1", "amount": 100 },
@@ -34,10 +34,11 @@
     "income": "8000",
     "expenseCategories": ["Rent", "Transportation", "Entertainment"],
     "transactionHistory": [
-      { "date": "2023-09-10", "description": "Salary", "amount": 8000 },
-      { "date": "2023-09-15", "description": "Rent", "amount": -2500 },
-      { "date": "2023-09-20", "description": "Transportation", "amount": -150 },
-      { "date": "2023-09-25", "description": "Entertainment", "amount": -100 }
+      { "ID": 1, "date": "2023-09-10", "description": "Deposit", "amount": 4000 },
+      { "ID": 2,"date": "2023-09-15", "description": "Withdraw", "amount": -200 },
+      { "ID": 3,"date": "2023-09-20", "description": "Transfer", "amount": -100 },
+      { "ID": 4,"date": "2023-09-25", "description": "Budget Application - Added an Item", "amount": -200 },
+      { "ID": 5,"date": "2023-09-25", "description": "Budget Application - Removed an Item", "amount": 400 }
     ],
     "budgetApplication": [
       { "ID": 1, "ItemName": "Milk", "amount": 200 },
@@ -57,11 +58,11 @@
     "income": "5500",
     "expenseCategories": ["Shopping", "Healthcare", "Travel"],
     "transactionHistory": [
-      { "date": "2023-09-10", "description": "Deposit", "amount": 5000 },
-      { "date": "2023-09-15", "description": "Withdraw", "amount": -300 },
-      { "date": "2023-09-20", "description": "Transfer", "amount": -200 },
-      { "date": "2023-09-25", "description": "Budget Application - Added an Item", "amount": -300 },
-      { "date": "2023-09-25", "description": "Budget Application - Removed an Item", "amount": 300 }
+      { "ID": 1, "date": "2023-09-10", "description": "Deposit", "amount": 5000 },
+      { "ID": 2, "date": "2023-09-15", "description": "Withdraw", "amount": -300 },
+      { "ID": 3, "date": "2023-09-20", "description": "Transfer", "amount": -200 },
+      { "ID": 4, "date": "2023-09-25", "description": "Budget Application - Added an Item", "amount": -300 },
+      { "ID": 5, "date": "2023-09-25", "description": "Budget Application - Removed an Item", "amount": 300 }
     ],
     "budgetApplication": [
       { "ID": 1, "ItemName": "Delicacies", "amount": 500 },
@@ -81,10 +82,11 @@
     "income": "4500",
     "expenseCategories": ["Education", "Hobbies", "Groceries"],
     "transactionHistory": [
-      { "date": "2023-09-10", "description": "Salary", "amount": 4500 },
-      { "date": "2023-09-15", "description": "Education", "amount": -500 },
-      { "date": "2023-09-20", "description": "Hobbies", "amount": -200 },
-      { "date": "2023-09-25", "description": "Groceries", "amount": -300 }
+      { "ID": 1, "date": "2023-09-10", "description": "Deposit", "amount": 6000 },
+      { "ID": 2, "date": "2023-09-15", "description": "Withdraw", "amount": -1000 },
+      { "ID": 3, "date": "2023-09-20", "description": "Transfer", "amount": -500 },
+      { "ID": 4, "date": "2023-09-25", "description": "Budget Application - Added an Item", "amount": -300 },
+      { "ID": 5, "date": "2023-09-25", "description": "Budget Application - Removed an Item", "amount": 300 }
     ],
     "budgetApplication": [
       { "ID": 1, "ItemName": "Egg", "amount": 200 },
@@ -104,10 +106,11 @@
     "income": "5200",
     "expenseCategories": ["Dining", "Utilities", "Transportation"],
     "transactionHistory": [
-      { "date": "2023-09-10", "description": "Salary", "amount": 5200 },
-      { "date": "2023-09-15", "description": "Dining", "amount": -150 },
-      { "date": "2023-09-20", "description": "Utilities", "amount": -200 },
-      { "date": "2023-09-25", "description": "Transportation", "amount": -100 }
+      { "ID": 1, "date": "2023-09-10", "description": "Deposit", "amount": 8000 },
+      { "ID": 2, "date": "2023-09-15", "description": "Withdraw", "amount": -2000 },
+      { "ID": 3, "date": "2023-09-20", "description": "Transfer", "amount": -800 },
+      { "ID": 4, "date": "2023-09-25", "description": "Budget Application - Added an Item", "amount": -200 },
+      { "ID": 5, "date": "2023-09-25", "description": "Budget Application - Removed an Item", "amount": 400 }
     ],
     "budgetApplication": [
       { "ID": 1, "ItemName": "Soap", "amount": 100 },
@@ -127,10 +130,11 @@
     "income": "5200",
     "expenseCategories": ["Dining", "Utilities", "Transportation"],
     "transactionHistory": [
-      { "date": "2023-09-10", "description": "Salary", "amount": 5200 },
-      { "date": "2023-09-15", "description": "Dining", "amount": -150 },
-      { "date": "2023-09-20", "description": "Utilities", "amount": -200 },
-      { "date": "2023-09-25", "description": "Transportation", "amount": -100 }
+      { "ID": 1, "date": "2023-09-10", "description": "Deposit", "amount": 2000 },
+      { "ID": 2, "date": "2023-09-15", "description": "Withdraw", "amount": -1500 },
+      { "ID": 3, "date": "2023-09-20", "description": "Transfer", "amount": -800 },
+      { "ID": 4, "date": "2023-09-25", "description": "Budget Application - Added an Item", "amount": -400 },
+      { "ID": 5, "date": "2023-09-25", "description": "Budget Application - Removed an Item", "amount": 400 }
     ],
     "budgetApplication": [
       { "ID": 1, "ItemName": "Item1", "amount": 100 },

@@ -26,6 +26,8 @@ const BudgetApp = ({ users, currentUser }) => {
     });
 
     const maxID = Math.max(...ids) + 1;
+
+    
    
 
     useEffect(() => {
@@ -56,12 +58,19 @@ const BudgetApp = ({ users, currentUser }) => {
 
     const HandleOnAdd = (e) => {
         e.preventDefault();
+            const storedUsers = JSON.parse(localStorage.getItem("userz")) || users;
+            const LoggedInUser = storedUsers.find((user) => user.name == currentUser.name)
+            const transIds = LoggedInUser.transactionHistory.map(id => {
+                return id.ID;
+            });
+            const transMaxID = Math.max(...transIds) + 1;
+        
             const updatedBalance = balance - amount;
             setBalance(updatedBalance)
 
             setTransaction([
                 ...transaction,
-                    { date: year + "-" + month + "-"+ day, description: transactDesc, amount: "-" + transactAmount },
+                    { ID: transMaxID, date: year + "-" + month + "-"+ day, description: transactDesc, amount: "-" + transactAmount },
             ]);
 
             setItem([
@@ -112,9 +121,16 @@ const BudgetApp = ({ users, currentUser }) => {
                                 <td className="budget-data">P {itim.amount}.00</td>
                                 <td className="budget-data">
                                 <button onClick={() => {
+                                    const storedUsers = JSON.parse(localStorage.getItem("userz")) || users;
+                                    const LoggedInUser = storedUsers.find((user) => user.name == currentUser.name)
+                                    const transIds = LoggedInUser.transactionHistory.map(id => {return id.ID;});
+                                    const transMaxID = Math.max(...transIds) + 1;
+                                
+                                    const updatedBalance = balance - amount;
                                     setTransaction([
                                         ...transaction,
-                                            { date: year + "-" + month + "-"+ day, 
+                                            { ID: transMaxID, 
+                                            date: year + "-" + month + "-"+ day, 
                                             description: "Budget Application - Removed an Item", 
                                             amount: (itim.amount) },
                                     ]);

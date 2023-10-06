@@ -6,7 +6,7 @@
 }
 
 .trans-container {
-    width: 35%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,4 +29,29 @@
     font-size: 24px;
     font-weight: 700;
     padding: 5px 5px 20px;
+}
+
+.trans-table {
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.trans-table-row {
+    background-color: #b11116;
+    color: white;
+    padding: 0;
+    columns: 3;
+}
+
+.trans-table-row:hover {
+    background-color: #b11116;
+}
+
+.trans-data {
+    text-align: center;
+    padding: 20px 50px;
+}
+
+.desc {
+    font-weight: 500;
 }
