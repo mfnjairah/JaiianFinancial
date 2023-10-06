@@ -8,18 +8,25 @@ const BudgetApp = ({ users, currentUser }) => {
     const LoggedInUser = storedUsers.find(
             (user) => user.name == currentUser.name)
 
+    const d = new Date();
     const [amount, setAmount] = useState("");
     const [name, setName] = useState('');
     const [item, setItem] = useState(LoggedInUser.budgetApplication);
     const [balance, setBalance] = useState(LoggedInUser.accountBalance);
+    const [transactAmount, settransactAmount] = useState("");
+    const [transactDesc, settransactDesc] = useState("");
+    const [transaction, setTransaction ] = useState(LoggedInUser.transactionHistory);
+
+    const [day, setDay] = useState(d.getDate());
+    const [month, setMonth] = useState(d.getMonth());
+    const year = d.getFullYear();
 
     const ids = item.map(id => {
         return id.ID;
     });
 
     const maxID = Math.max(...ids) + 1;
-
-    
+   
 
     useEffect(() => {
         const storedUsers = JSON.parse(localStorage.getItem("userz")) || users;
@@ -35,24 +42,34 @@ const BudgetApp = ({ users, currentUser }) => {
             accountBalance: balance
         };
 
+        updatedUsers[userIndex] = {
+            ...updatedUsers[userIndex],
+            transactionHistory: transaction
+        };
+
         localStorage.setItem("userz", JSON.stringify(updatedUsers));
         const storedUsers1 = JSON.parse(localStorage.getItem("userz")) || users;
         console.log(storedUsers1);
     }, [item]
     );
 
+
     const HandleOnAdd = (e) => {
         e.preventDefault();
-    
+            const updatedBalance = balance - amount;
+            setBalance(updatedBalance)
+
+            setTransaction([
+                ...transaction,
+                    { date: year + "-" + month + "-"+ day, description: transactDesc, amount: "-" + transactAmount },
+            ]);
+
             setItem([
                     ...item,
                     { ID: maxID, ItemName: name, amount: amount }
             ]);
 
-            const updatedBalance = balance - amount;
-            setBalance(updatedBalance)
     }
-    
 
 
     return (
@@ -68,7 +85,11 @@ const BudgetApp = ({ users, currentUser }) => {
                 <input className = "input-item-name"
                     type="number"
                     value={amount}
-                    onChange={e => setAmount(e.target.value)}
+                    onChange={e => {
+                        setAmount(e.target.value)
+                        settransactAmount(e.target.value)
+                        settransactDesc("Budget Application - Added an Item")
+                    }}
                     placeholder="Amount"
                 />
                 <button className= "add-item-button" onClick={HandleOnAdd}>Add</button>
@@ -91,6 +112,12 @@ const BudgetApp = ({ users, currentUser }) => {
                                 <td className="budget-data">P {itim.amount}.00</td>
                                 <td className="budget-data">
                                 <button onClick={() => {
+                                    setTransaction([
+                                        ...transaction,
+                                            { date: year + "-" + month + "-"+ day, 
+                                            description: "Budget Application - Removed an Item", 
+                                            amount: (itim.amount) },
+                                    ]);
                                     setBalance(Number(balance) + Number(itim.amount))
                                     setItem(item.filter(a => a.ID !== itim.ID));
                                 }

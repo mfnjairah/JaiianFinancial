@@ -10,10 +10,11 @@
     "income": "6000",
     "expenseCategories": ["Groceries", "Utilities", "Dining"],
     "transactionHistory": [
-      { "date": "2023-09-10", "description": "Salary", "amount": 6000 },
-      { "date": "2023-09-15", "description": "Groceries", "amount": -200 },
-      { "date": "2023-09-20", "description": "Utilities", "amount": -150 },
-      { "date": "2023-09-25", "description": "Dining", "amount": -100 }
+      { "date": "2023-09-10", "description": "Deposit", "amount": 6000 },
+      { "date": "2023-09-15", "description": "Withdraw", "amount": -200 },
+      { "date": "2023-09-20", "description": "Transfer", "amount": -150 },
+      { "date": "2023-09-25", "description": "Budget Application - Added an Item", "amount": -100 },
+      { "date": "2023-09-25", "description": "Budget Application - Removed an Item", "amount": 100 }
     ],
     "budgetApplication": [
       { "ID": 1, "ItemName": "Item1", "amount": 100 },
@@ -56,10 +57,11 @@
     "income": "5500",
     "expenseCategories": ["Shopping", "Healthcare", "Travel"],
     "transactionHistory": [
-      { "date": "2023-09-10", "description": "Salary", "amount": 5500 },
-      { "date": "2023-09-15", "description": "Shopping", "amount": -300 },
-      { "date": "2023-09-20", "description": "Healthcare", "amount": -100 },
-      { "date": "2023-09-25", "description": "Travel", "amount": -300 }
+      { "date": "2023-09-10", "description": "Deposit", "amount": 5000 },
+      { "date": "2023-09-15", "description": "Withdraw", "amount": -300 },
+      { "date": "2023-09-20", "description": "Transfer", "amount": -200 },
+      { "date": "2023-09-25", "description": "Budget Application - Added an Item", "amount": -300 },
+      { "date": "2023-09-25", "description": "Budget Application - Removed an Item", "amount": 300 }
     ],
     "budgetApplication": [
       { "ID": 1, "ItemName": "Delicacies", "amount": 500 },
