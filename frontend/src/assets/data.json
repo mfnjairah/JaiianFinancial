@@ -251,7 +251,7 @@
     "password": "pass123",
     "role": "admin",
     "accountNumber": 9876548,
-    "accountBalance": 18328,
+    "accountBalance": 302312,
     "income": "5200",
     "expenseCategories": ["Dining", "Utilities", "Transportation"],
     "transactionHistory": [
