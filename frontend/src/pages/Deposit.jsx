@@ -34,6 +34,8 @@ const Deposit = ({ users }) => {
     }));
   };
 
+  console.log(depositAmount);
+
   const onSubmit = (e) => {
     e.preventDefault();
     const storedUsers = JSON.parse(localStorage.getItem("userz")) || users;
