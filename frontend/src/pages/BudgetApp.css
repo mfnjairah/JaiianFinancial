@@ -65,6 +65,7 @@
     background-color: #b11116;
     color: white;
     padding: 0;
+    columns: 3;
 }
 
 .budget-table-row th {
@@ -84,4 +85,9 @@
 
 .budget-data:hover {
     background-color: transparent;
+}
+
+.curr-bal-cell {
+    background-color: #b11116;
+    color: white;
 }
