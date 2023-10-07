@@ -17,7 +17,7 @@ const Deposit = ({ users, currentUser }) => {
   const transactions = loggedInUser.transactionHistory;
   const transIds = loggedInUser.transactionHistory.map(id => {return id.ID;});
   const transMaxID = Math.max(...transIds) + 1;
-  
+
   const d = new Date();
   const [day, setDay] = useState(d.getDate());
   const [month, setMonth] = useState(d.getMonth());
@@ -49,18 +49,23 @@ const Deposit = ({ users, currentUser }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const storedUsers = JSON.parse(localStorage.getItem("userz")) || users;
+    const customer = users.find((user) => user.accountNumber == accountNumber);
+    const customerTrans = customer.transactionHistory;
 
+    const adminTransIds = customer.transactionHistory.map(id => {return id.ID;});
+    const adminTransMaxID = Math.max(...adminTransIds) + 1;
+
+    const userIndex = storedUsers.findIndex(
+      (user) => user.accountNumber == accountNumber
+    );
 
     if (depositAmount >= 500) {
-      const userIndex = storedUsers.findIndex(
-        (user) => user.accountNumber == accountNumber
-      );
-
-      const updatedTransaction = [...transactions,
-        { ID: transMaxID, 
+      
+      const updatedTransaction = [...customerTrans,
+        { ID: adminTransMaxID, 
         date: year + "-" + month + "-"+ day,
         description: "Deposit", 
-        amount: depositAmount, }]
+        amount: depositAmount }]
 
       if (userIndex !== -1) {
         const updatedUsers = [...storedUsers];
@@ -90,6 +95,8 @@ const Deposit = ({ users, currentUser }) => {
     } else {
       alert("Amount must be higher than 500");
     }
+    const storedUsers1 = JSON.parse(localStorage.getItem("userz")) || users;
+    console.log(storedUsers1)
   };
 
   //-----------------------------------------------------------------------------
@@ -99,24 +106,21 @@ const Deposit = ({ users, currentUser }) => {
   const testing = (e) => {
     e.preventDefault();
     const storedUsers = JSON.parse(localStorage.getItem("userz")) || users;
+    const userIndex = storedUsers.findIndex((user) => user.accountNumber === currentUser.accountNumber);
 
     if (userAmount >= 500) {
-      const userIndex = storedUsers.findIndex(
-        (user) => user.accountNumber === currentUser.accountNumber
-      );
 
       const updatedTransaction = [...transactions,
         { ID: transMaxID, 
         date: year + "-" + month + "-"+ day,
         description: "Deposit", 
-        amount: userAmount, }]
+        amount: userAmount }]
 
       const updatedUsers = [...storedUsers];
+
         updatedUsers[userIndex] = {
           ...updatedUsers[userIndex],
-          accountBalance:
-            parseInt(updatedUsers[userIndex].accountBalance) +
-            parseInt(userAmount),
+          accountBalance: parseInt(updatedUsers[userIndex].accountBalance) + parseInt(userAmount),
         };
 
         updatedUsers[userIndex] = {
@@ -127,6 +131,7 @@ const Deposit = ({ users, currentUser }) => {
         setUserAmount('');
 
         localStorage.setItem("userz", JSON.stringify(updatedUsers));
+        alert(`Transaction successful.`);
 
         const storedUsers1 = JSON.parse(localStorage.getItem("userz")) || users;
         console.log(storedUsers1);
