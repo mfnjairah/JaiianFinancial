@@ -65,17 +65,20 @@ const Transfer = ({ users, currentUser }) => {
     const storedUsers = JSON.parse(localStorage.getItem("userz")) || users;
     const senderUser = storedUsers.find((user) => user.accountNumber == sender);
     const receiverUser = storedUsers.find((user) => user.accountNumber == receiver);
-    const senderTransaction = senderUser.transactionHistory;
-    const receiverTransaction = receiverUser.transactionHistory;
-    const senderTransIds = senderTransaction.map(id => {return id.ID;});
-    const senderTransMaxID = Math.max(...senderTransIds) + 1;
-    const receiverTransIds = receiverTransaction.map(id => {return id.ID;});
-    const receiverTransMaxID = Math.max(...receiverTransIds) + 1;
+
   
     if (sendAmount > 0 && senderUser && receiverUser && senderUser !== receiverUser) {
       const parsedSendAmount = parseFloat(sendAmount);
 
       if (senderUser.accountBalance >= parsedSendAmount) {
+
+        const senderTransaction = senderUser.transactionHistory;
+        const receiverTransaction = receiverUser.transactionHistory;
+        
+        const senderTransIds = senderTransaction.map(id => {return id.ID;});
+        const senderTransMaxID = Math.max(...senderTransIds) + 1;
+        const receiverTransIds = receiverTransaction.map(id => {return id.ID;});
+        const receiverTransMaxID = Math.max(...receiverTransIds) + 1;
 
         senderUser.accountBalance -= parsedSendAmount;
         receiverUser.accountBalance += parsedSendAmount;
@@ -128,6 +131,80 @@ const Transfer = ({ users, currentUser }) => {
       }
     } else {
       alert("Invalid sender, receiver, or send amount.");
+    }
+  };
+
+  const userOnSubmit = (e) => {
+    e.preventDefault();
+    const storedUsers = JSON.parse(localStorage.getItem("userz")) || users;
+    const senderUser = storedUsers.find((user) => user.accountNumber == currentUser.accountNumber);
+    const receiverUser = storedUsers.find((user) => user.accountNumber == receiver);
+
+  
+    if (sendAmount > 0 && senderUser && receiverUser && senderUser !== receiverUser) {
+      const parsedSendAmount = parseFloat(sendAmount);
+
+      if (senderUser.accountBalance >= parsedSendAmount) {
+
+        const senderTransaction = senderUser.transactionHistory;
+        const receiverTransaction = receiverUser.transactionHistory;
+        
+        const senderTransIds = senderTransaction.map(id => {return id.ID;});
+        const senderTransMaxID = Math.max(...senderTransIds) + 1;
+        const receiverTransIds = receiverTransaction.map(id => {return id.ID;});
+        const receiverTransMaxID = Math.max(...receiverTransIds) + 1;
+
+        senderUser.accountBalance -= parsedSendAmount;
+        receiverUser.accountBalance += parsedSendAmount;
+
+        const senderUpdatedTransaction = [...senderTransaction,
+          { ID: senderTransMaxID, 
+          date: year + "-" + month + "-"+ day,
+          description: "Outcoming Transfer", 
+          amount: "-" + sendAmount }];
+
+        const receiverUpdatedTransaction = [...receiverTransaction,
+          { ID: receiverTransMaxID, 
+          date: year + "-" + month + "-"+ day,
+          description: "Incoming Transfer", 
+          amount: sendAmount }];
+
+        const senderIndex = storedUsers.findIndex(
+          (user) => user.accountNumber == currentUser.accountNumber
+        );
+        const receiverIndex = storedUsers.findIndex(
+          (user) => user.accountNumber == receiver
+        );
+
+        storedUsers[senderIndex] = senderUser;
+        storedUsers[receiverIndex] = receiverUser;
+
+        storedUsers[senderIndex] = {
+          ...storedUsers[senderIndex],
+          transactionHistory: senderUpdatedTransaction
+        };
+
+        storedUsers[receiverIndex] = {
+          ...storedUsers[receiverIndex],
+          transactionHistory: receiverUpdatedTransaction
+        };
+
+        localStorage.setItem("userz", JSON.stringify(storedUsers));
+        setFormData({
+          sender: "",
+          receiver: "",
+          sendAmount: "",
+        });
+
+        setSenderName("");
+        setReceiverName("");
+
+        alert(`Transaction successful.`);
+      } else {
+        alert("Insufficient balance for the transaction.");
+      }
+    } else {
+      alert("Invalid receiver or send amount.");
     }
   };
 
@@ -185,7 +262,7 @@ const Transfer = ({ users, currentUser }) => {
           )}
 
           {currentUser.role === "user" && (
-            <form>
+            <form onSubmit={userOnSubmit}>
               <div className="form-group">
                 <input
                   className="form-control-transfer"
