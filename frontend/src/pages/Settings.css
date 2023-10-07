@@ -1,0 +1,76 @@
+.register-div {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.heading-register {
+    padding: 40px 30px 20px;
+}
+
+.settings-table {
+    width: 80%
+}
+
+.content-holder {
+    width: 100%
+}
+
+.info-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-desc {
+    width: 40%;
+}
+
+.table-value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-value-name {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.table-value-long {
+    width: 95%;
+}
+
+.table-button {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.trans-icon  {
+    font-size: 20px;
+    height: fit-content;
+    min-height: fit-content;
+}
+
+.trans-icon:hover {
+    color: #b11116;
+}
+
+.config-container {
+    padding: 20px;
+}
+
+.settings-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+

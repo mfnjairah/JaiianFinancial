@@ -11,6 +11,7 @@ import Withdraw from "./pages/Withdraw";
 import Transfer from "./pages/Transfer";
 import Transaction from "./pages/Transaction";
 import BudgetApp from "./pages/BudgetApp";
+import Settings from "./pages/Settings";
 
 // Utils
 import PrivateRoute from "./utils/PrivateRoute";
@@ -154,6 +155,7 @@ function App() {
               path="/transaction"
             />
             <Route element={<BudgetApp users={users} currentUser={currentUser}/>} path="/budgetapplication" />
+            <Route element={<Settings users={users} currentUser={currentUser}/>} path="/settings" />
           </Route>
 
           <Route

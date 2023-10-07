@@ -95,7 +95,7 @@ const Header = ({ isLoggedIn, handleLogoutBtn, currentUser }) => {
               </Link>
             </li>
             <li>
-              <Link to="/register" className="nav-a">
+              <Link to="/settings" className="nav-a">
                 <FiSettings title="Settings" />
               </Link>
             </li>
