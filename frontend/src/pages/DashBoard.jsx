@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./DashBoard.css";
 import { AiOutlineTransaction, AiFillEdit } from "react-icons/ai";
+import { BsFillPieChartFill } from "react-icons/bs";
+import { RiBankCard2Fill } from "react-icons/ri";
 import { GrNotes } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 
@@ -102,10 +104,10 @@ const DashBoard = ({ users, currentUser }) => {
                     <td>{user.accountNumber}</td>
                     <td>{currency.format(user.accountBalance)}</td>
                     <td>{user.role}</td>
-                    <td>
+                    <td className="options-td">
                       <span className="options">
-                        <AiOutlineTransaction className="option" />
-                        <GrNotes className="option" />
+                        <RiBankCard2Fill className="option" title="Transactions" />
+                        <BsFillPieChartFill className="option" title="Budget Application"/>
                         <AiFillEdit className="option" />
                       </span>
                     </td>

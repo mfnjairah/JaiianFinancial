@@ -66,66 +66,75 @@ const Transfer = ({ users, currentUser }) => {
     const senderUser = storedUsers.find((user) => user.accountNumber == sender);
     const receiverUser = storedUsers.find((user) => user.accountNumber == receiver);
 
+    const admin = storedUsers.find((user) => user.accountNumber == currentUser.accountNumber);
+
   
     if (sendAmount > 0 && senderUser && receiverUser && senderUser !== receiverUser) {
       const parsedSendAmount = parseFloat(sendAmount);
 
       if (senderUser.accountBalance >= parsedSendAmount) {
 
-        const senderTransaction = senderUser.transactionHistory;
-        const receiverTransaction = receiverUser.transactionHistory;
-        
-        const senderTransIds = senderTransaction.map(id => {return id.ID;});
-        const senderTransMaxID = Math.max(...senderTransIds) + 1;
-        const receiverTransIds = receiverTransaction.map(id => {return id.ID;});
-        const receiverTransMaxID = Math.max(...receiverTransIds) + 1;
+        if (receiverUser !== admin) {
 
-        senderUser.accountBalance -= parsedSendAmount;
-        receiverUser.accountBalance += parsedSendAmount;
+          const senderTransaction = senderUser.transactionHistory;
+          const receiverTransaction = receiverUser.transactionHistory;
+          
+          const senderTransIds = senderTransaction.map(id => {return id.ID;});
+          const senderTransMaxID = Math.max(...senderTransIds) + 1;
+          const receiverTransIds = receiverTransaction.map(id => {return id.ID;});
+          const receiverTransMaxID = Math.max(...receiverTransIds) + 1;
 
-        const senderUpdatedTransaction = [...senderTransaction,
-          { ID: senderTransMaxID, 
-          date: year + "-" + month + "-"+ day,
-          description: "Outcoming Transfer", 
-          amount: "-" + sendAmount }];
+          senderUser.accountBalance -= parsedSendAmount;
+          receiverUser.accountBalance += parsedSendAmount;
 
-        const receiverUpdatedTransaction = [...receiverTransaction,
-          { ID: receiverTransMaxID, 
-          date: year + "-" + month + "-"+ day,
-          description: "Incoming Transfer", 
-          amount: sendAmount }];
+          const senderUpdatedTransaction = [...senderTransaction,
+            { ID: senderTransMaxID, 
+            date: year + "-" + month + "-"+ day,
+            description: "Outcoming Transfer", 
+            amount: "-" + sendAmount }];
 
-        const senderIndex = storedUsers.findIndex(
-          (user) => user.accountNumber == sender
-        );
-        const receiverIndex = storedUsers.findIndex(
-          (user) => user.accountNumber == receiver
-        );
+          const receiverUpdatedTransaction = [...receiverTransaction,
+            { ID: receiverTransMaxID, 
+            date: year + "-" + month + "-"+ day,
+            description: "Incoming Transfer", 
+            amount: sendAmount }];
 
-        storedUsers[senderIndex] = senderUser;
-        storedUsers[receiverIndex] = receiverUser;
+          const senderIndex = storedUsers.findIndex(
+            (user) => user.accountNumber == sender
+          );
+          const receiverIndex = storedUsers.findIndex(
+            (user) => user.accountNumber == receiver
+          );
 
-        storedUsers[senderIndex] = {
-          ...storedUsers[senderIndex],
-          transactionHistory: senderUpdatedTransaction
-        };
+          storedUsers[senderIndex] = senderUser;
+          storedUsers[receiverIndex] = receiverUser;
 
-        storedUsers[receiverIndex] = {
-          ...storedUsers[receiverIndex],
-          transactionHistory: receiverUpdatedTransaction
-        };
+          storedUsers[senderIndex] = {
+            ...storedUsers[senderIndex],
+            transactionHistory: senderUpdatedTransaction
+          };
 
-        localStorage.setItem("userz", JSON.stringify(storedUsers));
-        setFormData({
-          sender: "",
-          receiver: "",
-          sendAmount: "",
-        });
+          storedUsers[receiverIndex] = {
+            ...storedUsers[receiverIndex],
+            transactionHistory: receiverUpdatedTransaction
+          };
 
-        setSenderName("");
-        setReceiverName("");
+          localStorage.setItem("userz", JSON.stringify(storedUsers));
+          setFormData({
+            sender: "",
+            receiver: "",
+            sendAmount: "",
+          });
 
-        alert(`Transaction successful.`);
+          setSenderName("");
+          setReceiverName("");
+
+          alert(`Transaction successful.`);
+        }
+        else {
+          alert("Admin can't transfer to themselves. Please contact another admin.");
+        }
+
       } else {
         alert("Insufficient balance for the transaction.");
       }

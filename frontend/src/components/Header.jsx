@@ -48,21 +48,19 @@ const Header = ({ isLoggedIn, handleLogoutBtn, currentUser }) => {
                 <BiTransferAlt title="Transfer" />
               </Link>
             </li>
-            {currentUser.role === "user" && (
-              <li>
-                <Link to="/transaction" className="nav-a">
-                  <RiBankCard2Fill title="Transactions" />
-                </Link>
-              </li>
-            )}
 
-            {currentUser.role === "user" && (
+            <li>
+              <Link to="/transaction" className="nav-a">
+              <RiBankCard2Fill title="Transactions" />
+              </Link>
+            </li>
+            
+
               <li>
                 <Link to="/budgetapplication" className="nav-a">
-                  <BsFillPieChartFill title="Bank Application" />
+                  <BsFillPieChartFill title="Budget Application" />
                 </Link>
               </li>
-            )}
 
             {currentUser.role === "admin" && (
               <li>

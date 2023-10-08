@@ -49,7 +49,7 @@ tr:hover {
 .options {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .option {
@@ -61,6 +61,10 @@ tr:hover {
   color: #b11116;
   cursor: pointer;
   font-weight: bold;
+}
+
+.options-td {
+  padding: 0;
 }
 
 .align-right {
