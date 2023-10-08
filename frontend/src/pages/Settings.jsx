@@ -9,15 +9,31 @@ const Settings = ({ users, currentUser }) => {
 const storedUsers = JSON.parse(localStorage.getItem("userz")) || users;
 const LoggedInUser = storedUsers.find((user) => user.name == currentUser.name);
 
+// Form Setter when edit icon clicked
 const [buttonClicked, setButtonClicked] = useState('');
-const [tabPass, setTabPass] = useState(LoggedInUser.password);
 
+// Table Data
+const [tabPass, setTabPass] = useState(LoggedInUser.password);
+const [tabUname, setTabUname] = useState(LoggedInUser.userName);
+const [tabEmail, setTabEmail] = useState(LoggedInUser.email);
+
+// Convert password String to "*"
 const originalString = tabPass;
 const convertedString = originalString.split('').map(() => '*').join('');
 
+// For change password feature
 const [oldPass, setOldPass] = useState('');
 const [insPass, setInsPass] = useState('');
 const [changeNewPass, setChangeNewPass] = useState('');
+
+
+// For change username feature
+const [newUname, setNewUname] = useState('');
+const [CUPassword, setCUPassword] = useState('');
+
+// For change email feature
+const [newEmail, setNewEmail] = useState('');
+const [CEPassword, setCEPassword] = useState('');
 
 
 const changePassSubmit = (e) => {
@@ -34,7 +50,6 @@ const changePassSubmit = (e) => {
                     ...updatedUsers[userIndex],
                     password: newPass
                 };
-
 
                 setTabPass(newPass.split('').map(() => '*').join(''))
                 setOldPass('')
@@ -54,6 +69,67 @@ const changePassSubmit = (e) => {
     }
     else {
         alert("Old Password Can't Be Your New Password.")
+    }
+}
+
+const changeUnameSubmit = (e) => {
+    e.preventDefault();
+    const userIndex = storedUsers.findIndex((user) => user.accountNumber == currentUser.accountNumber);
+    
+    if (CUPassword === LoggedInUser.password) {
+        if(newUname !== LoggedInUser.userName) {
+            const updatedUsers = [...storedUsers];
+            const newUsername = newUname;
+
+            updatedUsers[userIndex] = {
+                ...updatedUsers[userIndex],
+                userName: newUsername
+            };
+
+            setNewUname('');
+            setCUPassword('');
+            setTabUname(newUsername);
+
+            localStorage.setItem("userz", JSON.stringify(updatedUsers));
+            alert(`Transaction successful.`);
+
+        }
+        else {
+            alert("Old Username Can't Be Your New Username.")
+        }       
+    }
+    else {
+        alert("Wrong Credentials.")
+    }
+}
+
+const changeEmailSubmit = (e) => {
+    e.preventDefault();
+    const userIndex = storedUsers.findIndex((user) => user.accountNumber == currentUser.accountNumber);
+
+    if (CEPassword === LoggedInUser.password) {
+        if(newEmail !== LoggedInUser.email) {
+            const updatedUsers = [...storedUsers];
+            const newEmaill = newEmail;
+
+            updatedUsers[userIndex] = {
+                ...updatedUsers[userIndex],
+                email: newEmaill
+            };
+
+            setTabEmail(newEmaill);
+            setNewEmail('');
+            setCEPassword('');
+
+            localStorage.setItem("userz", JSON.stringify(updatedUsers));
+            alert(`Transaction successful.`);
+        }
+        else {
+            alert("Old Email Can't Be Your New Email.")
+        }
+    }
+    else {
+        alert('Wrong Credentials.')
     }
 }
 
@@ -82,14 +158,18 @@ const changePassSubmit = (e) => {
                         <tr>
                             <td className="table-desc">Email</td>
                             <td className= "table-value">
-                                <span className="table-value-long">{LoggedInUser.email}</span>
+                                <span className="table-value-long">{tabEmail}</span>
                                 <span className="table-button" 
                                     onClick={(e) => {
                                     e.preventDefault();
                                     if (buttonClicked === "Email") {
-                                    setButtonClicked("");
+                                        setNewEmail("");
+                                        setCEPassword("");
+                                        setButtonClicked("");
                                     }
                                     else {
+                                        setNewEmail("");
+                                        setCEPassword("");
                                         setButtonClicked("Email");
                                     }
                                 }}>
@@ -99,14 +179,18 @@ const changePassSubmit = (e) => {
                         <tr>
                             <td className="table-desc">Username</td>
                             <td className= "table-value">
-                                <span className="table-value-long">{LoggedInUser.userName}</span>
+                                <span className="table-value-long">{tabUname}</span>
                                 <span className="table-button" 
                                     onClick={(e) => {
                                     e.preventDefault();
                                     if (buttonClicked === "Username") {
-                                    setButtonClicked("");
+                                        setNewUname('');
+                                        setCUPassword('');
+                                        setButtonClicked("");
                                     }
                                     else {
+                                        setNewUname('');
+                                        setCUPassword('');
                                         setButtonClicked("Username");
                                     }
                                 }}>
@@ -121,9 +205,15 @@ const changePassSubmit = (e) => {
                                     onClick={(e) => {
                                     e.preventDefault();
                                     if (buttonClicked === "Password") {
+                                        setOldPass('')
+                                        setInsPass('')
+                                        setChangeNewPass('')
                                         setButtonClicked("");
                                     }
                                     else {
+                                        setOldPass('')
+                                        setInsPass('')
+                                        setChangeNewPass('')
                                         setButtonClicked("Password");
                                     }
                                 }}>
@@ -137,31 +227,57 @@ const changePassSubmit = (e) => {
                 {buttonClicked === "Email" && (
                     <div className="config-container">
                         <h1>Email Configuration</h1>
-                        <div className="settings-form-container">
-                            <input className = "input-item-name"
-                            placeholder="Insert New Email"
-                            />
-                            <input className = "input-item-name"
-                            placeholder="Confirm Password"
-                            />
+                        <form className="settings-form-container" onSubmit={changeEmailSubmit}>
+                            <div className="settings-form-container">
+                                <input className = "input-item-name"
+                                placeholder="Insert New Email"
+                                onChange={e => {
+                                    setNewEmail(e.target.value)
+                                }}
+                                value={newEmail}
+                                required
+                                />
+                                <input className = "input-item-name"
+                                type="password"
+                                placeholder="Confirm Password"
+                                onChange={e => {
+                                    setCEPassword(e.target.value)
+                                }}
+                                value={CEPassword}
+                                required
+                                />
 
-                            <button className= "add-item-button">Submit</button>
-                        </div>
+                                <button className= "add-item-button">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 )}
                 {buttonClicked === "Username" && (
                     <div className="config-container">
                         <h1>Username Configuration</h1>
-                        <div className="settings-form-container">
-                            <input className = "input-item-name"
-                            placeholder="Insert New Username"
-                            />
-                            <input className = "input-item-name"
-                            placeholder="Confirm Password"
-                            />
+                        <form className="settings-form-container" onSubmit={changeUnameSubmit}>
+                            <div className="settings-form-container">
+                                <input className = "input-item-name"
+                                placeholder="Insert New Username"
+                                onChange={e => {
+                                    setNewUname(e.target.value)
+                                }}
+                                value={newUname}
+                                required
+                                />
+                                <input className = "input-item-name"
+                                placeholder="Confirm Password"
+                                type="password"
+                                onChange={e => {
+                                    setCUPassword(e.target.value)
+                                }}
+                                value={CUPassword}
+                                required
+                                />
 
-                            <button className= "add-item-button">Submit</button>
-                        </div>
+                                <button className= "add-item-button">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 )}
                 {buttonClicked === "Password" && (
@@ -176,6 +292,7 @@ const changePassSubmit = (e) => {
                                 }}
                                 placeholder="Insert Old Password"
                                 type="password"
+                                required
                                 />
 
                                 <input className = "input-item-name"
@@ -185,6 +302,7 @@ const changePassSubmit = (e) => {
                                     setInsPass(e.target.value)
                                 }}
                                 type="password"
+                                required
                                 />
 
                                 <input className = "input-item-name"
@@ -194,6 +312,7 @@ const changePassSubmit = (e) => {
                                     setChangeNewPass(e.target.value)
                                 }}
                                 type="password"
+                                required
                                 />
 
                                 <button className= "add-item-button">Submit</button>
@@ -204,8 +323,7 @@ const changePassSubmit = (e) => {
             </section>
         </div>
     </div>
-  )
- 
+  ) 
 };
 
 export default Settings;
