@@ -147,5 +147,39 @@ tr:hover {
 }
 
 .data-container {
-  padding: 70px 10px 0;
+  padding: 70px 10px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.dash-data-table {
+  border-spacing: 0;
+  border: 2px solid #b11116;
+  min-width: 80%;
+}
+
+.dash-data-table th {
+  background-color: #b11116;
+  color: white;
+}
+
+.modal-tbl-th, .modal-tbl-td {
+  border: 1px solid #b11116;
+  padding: 20px 10px;
+  
+}
+
+.modal-tbl-th-deets {
+  padding: 5px 10px;
+  font-size: 15px;
+  font-weight: 300;
+  border: 1px solid #b11116;
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
 }

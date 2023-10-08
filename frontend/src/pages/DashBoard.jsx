@@ -97,7 +97,7 @@ const DashBoard = ({ users, currentUser }) => {
                         <BsFillPieChartFill className="option" title="Budget Application"
                         onClick={ (e) => {
                           e.preventDefault();
-                          setDataToMap(user.transactionHistory);
+                          setDataToMap(user.budgetApplication);
                           setName(user.name);
                           setAccountNo(user.accountNumber);
                           setShowModal('budgetApp')
@@ -130,7 +130,28 @@ const DashBoard = ({ users, currentUser }) => {
                   <div className="x-container"><span class="close" onClick={ (e) => setShowModal('')}>&times;</span></div>
                 </div>
                 <div className="data-container">
-                    <span>Transaction History</span>
+                    <table className= "dash-data-table">
+                      <thead>
+                        <tr>
+                          <th className="modal-tbl-th-deets left">{name}</th>
+                          <th className="modal-tbl-th-deets right" colSpan="2">{accountNo}</th>
+                        </tr>
+                        <tr>
+                          <th className="modal-tbl-th">Date</th>
+                          <th className="modal-tbl-th">Description</th>
+                          <th className="modal-tbl-th">Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {dataToMap.map((user) => (
+                          <tr key={user.ID}>
+                            <td className="modal-tbl-td">{user.date}</td>
+                            <td className="modal-tbl-td">{user.description}</td>
+                            <td className="modal-tbl-td">{user.amount}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                 </div>
               </div>
           </div>
@@ -138,16 +159,35 @@ const DashBoard = ({ users, currentUser }) => {
 
       {showModal === "budgetApp" && (
           <div id="myModal" class="modal">
-              <div class="modal-content">
-                <div className="close-container">
-                  <div className="title-container"><BsFillPieChartFill className="modal-icon"/><span className="modal-title">Budget Application</span></div>
-                  <div className="x-container"><span class="close" onClick={ (e) => setShowModal('')}>&times;</span></div>
-                </div>
-                <div className="data-container">
-                    <span>Budget Application</span>
-                </div>
+            <div class="modal-content">
+              <div className="close-container">
+                <div className="title-container"><RiBankCard2Fill className="modal-icon"/><span className="modal-title">Budget Application</span></div>
+                <div className="x-container"><span class="close" onClick={ (e) => setShowModal('')}>&times;</span></div>
               </div>
-          </div>
+              <div className="data-container">
+                  <table className= "dash-data-table">
+                    <thead>
+                      <tr>
+                        <th className="modal-tbl-th-deets left">{name}</th>
+                        <th className="modal-tbl-th-deets right" colSpan="2">{accountNo}</th>
+                      </tr>
+                      <tr>
+                        <th className="modal-tbl-th">Item Name</th>
+                        <th className="modal-tbl-th">Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {dataToMap.map((user) => (
+                        <tr key={user.ID}>
+                          <td className="modal-tbl-td">{user.ItemName}</td>
+                          <td className="modal-tbl-td">{user.amount}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+        </div>
       )}
 
       {showModal === "edit" && (
