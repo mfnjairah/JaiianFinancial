@@ -14,6 +14,13 @@ const DashBoard = ({ users, currentUser }) => {
   );
   const currency = new Intl.NumberFormat("en-us");
 
+  const [dataToMap, setDataToMap] = useState('');
+  const [name, setName] = useState('');
+  const [accountNo, setAccountNo] = useState('');
+  const [accountBal, setAccountBal] = useState('');
+
+  const [showModal, setShowModal] = useState(''); 
+
   useEffect(() => {
     const userDataFromLocalStorage =
       JSON.parse(localStorage.getItem("userz")) || users;
@@ -52,34 +59,6 @@ const DashBoard = ({ users, currentUser }) => {
         </div>
       </div>
 
-      {/* {currentUser.role === "user" && (
-        <div className="table-user-div">
-          <div className="main-container">
-            <div className="grid-container">
-              <div className="balance-container">
-                <div className="balance-holder">
-                  <span className="balance-title">Current Balance:</span>
-                  <span className="main-balance">
-                    P{currentUser.accountBalance}.00
-                  </span>
-                </div>
-                <div className="user-info-container">
-                  <span>{currentUser.name}</span>
-                  <span>{currentUser.accountNumber}</span>
-                </div>
-              </div>
-              <button className="nav-button">Deposit</button>
-              <button className="nav-button">Withdraw</button>
-              <button className="nav-button">Send Money</button>
-              <button className="nav-button">Transactions</button>
-              <button className="nav-button budget-app-button">
-                Budget Application
-              </button>
-            </div>
-          </div>
-        </div>
-      )} */}
-
       {currentUser.role === "admin" && (
         <div>
           <div className="table-div">
@@ -106,9 +85,33 @@ const DashBoard = ({ users, currentUser }) => {
                     <td>{user.role}</td>
                     <td className="options-td">
                       <span className="options">
-                        <RiBankCard2Fill className="option" title="Transactions" />
-                        <BsFillPieChartFill className="option" title="Budget Application"/>
-                        <AiFillEdit className="option" />
+                        <RiBankCard2Fill className="option" title="Transactions" 
+                          onClick={ (e) => {
+                            e.preventDefault();
+                            setDataToMap(user.transactionHistory);
+                            setName(user.name);
+                            setAccountNo(user.accountNumber);
+                            setShowModal("transaction");
+                          }} 
+                        />
+                        <BsFillPieChartFill className="option" title="Budget Application"
+                        onClick={ (e) => {
+                          e.preventDefault();
+                          setDataToMap(user.transactionHistory);
+                          setName(user.name);
+                          setAccountNo(user.accountNumber);
+                          setShowModal('budgetApp')
+                        }}
+                        />
+                        <AiFillEdit className="option" 
+                        onClick={ (e) => {
+                          e.preventDefault();
+                          setDataToMap(user.transactionHistory);
+                          setName(user.name);
+                          setAccountNo(user.accountNumber);
+                          setShowModal('edit')
+                        }}
+                        />
                       </span>
                     </td>
                   </tr>
@@ -118,8 +121,51 @@ const DashBoard = ({ users, currentUser }) => {
           </div>
         </div>
       )}
+
+      {showModal === "transaction" && (
+          <div id="myModal" class="modal">
+              <div class="modal-content">
+                <div className="close-container">
+                  <div className="title-container"><RiBankCard2Fill className="modal-icon"/><span className="modal-title">Transaction History</span></div>
+                  <div className="x-container"><span class="close" onClick={ (e) => setShowModal('')}>&times;</span></div>
+                </div>
+                <div className="data-container">
+                    <span>Transaction History</span>
+                </div>
+              </div>
+          </div>
+      )}
+
+      {showModal === "budgetApp" && (
+          <div id="myModal" class="modal">
+              <div class="modal-content">
+                <div className="close-container">
+                  <div className="title-container"><BsFillPieChartFill className="modal-icon"/><span className="modal-title">Budget Application</span></div>
+                  <div className="x-container"><span class="close" onClick={ (e) => setShowModal('')}>&times;</span></div>
+                </div>
+                <div className="data-container">
+                    <span>Budget Application</span>
+                </div>
+              </div>
+          </div>
+      )}
+
+      {showModal === "edit" && (
+          <div id="myModal" class="modal">
+              <div class="modal-content">
+                <div className="close-container">
+                  <div className="title-container"><BsFillPieChartFill className="modal-icon"/><span className="modal-title">Configure this Account</span></div>
+                  <div className="x-container"><span class="close" onClick={ (e) => setShowModal('')}>&times;</span></div>
+                </div>
+                <div className="data-container">
+                    <span>Configure this Account</span>
+                </div>
+              </div>
+          </div>
+      )}
     </div>
   );
+
 };
 
 export default DashBoard;
