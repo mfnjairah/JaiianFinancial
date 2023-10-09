@@ -95,12 +95,21 @@ tr:hover {
   overflow: scroll;
 }
 
+.conf-content {
+  background-color: #fefefe;
+  margin: auto;
+  width: 30%;
+  height: 60%;
+  overflow: scroll;
+}
+
+.conf-content::-webkit-scrollbar,
 .modal-content::-webkit-scrollbar {
   display: none;
 }
 .close-container {
+  width: inherit;
   background: #b11116;
-  width: 40%;
   position: fixed;
   display: flex;
   justify-content: end;
@@ -147,15 +156,18 @@ tr:hover {
 }
 
 .data-container {
-  padding: 70px 10px 20px;
+  padding: 90px 10px 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .dash-data-table {
   border-spacing: 0;
   border: 2px solid #b11116;
   min-width: 80%;
+  text-align: center;
 }
 
 .dash-data-table th {
@@ -182,4 +194,97 @@ tr:hover {
 
 .left {
   text-align: left;
+}
+
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+}
+
+.detail-info-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.full-name-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.conf-icon {
+  font-size: 20px;
+  padding: 0 10px;
+}
+
+.conf-icon:hover {
+  color: #b11116;
+}
+
+.detail-form-holder {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+
+.detail-input {
+  height: 25px;
+  width: 79%;
+}
+
+.detail-input-pass {
+  height: 25px;
+  width: 45%;
+  padding: 0 5px;
+}
+
+.detail-form-submit, .detail-form-submit-pass {
+  width: 19%;
+  height: 26px;
+  background: #b11116;
+  color: white;
+  border-color: #630306;
+}
+
+.detail-form-submit-pass {
+  height: 30px;
+  width: 30%;
+}
+
+.radio-buts {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.rad {
+  padding: 0 10px;
+}
+
+.rad-container, .button-pass {
+  display: flex;
+  justify-content: center;
+}
+
+.button-pass {
+  padding: 8px;
+}
+
+.conf-user-icon {
+  font-size: 90px;
+}
+
+.tit {
+  font-weight: 500;
 }
