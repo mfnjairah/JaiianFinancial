@@ -259,6 +259,8 @@ const changeEmailSubmit = (e) => {
                             <div className="settings-form-container">
                                 <input className = "input-item-name"
                                 placeholder="Insert New Username"
+                                pattern = "[a-zA-Z][a-zA-Z0-9-_.]" 
+                                title="Please Use Only Aphabet Characters and Numbers. Period, dash and underscore are allowed."
                                 onChange={e => {
                                     setNewUname(e.target.value)
                                 }}
@@ -298,6 +300,8 @@ const changeEmailSubmit = (e) => {
                                 <input className = "input-item-name"
                                 placeholder="Insert New Password"
                                 value={insPass}
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+
                                 onChange={e => {
                                     setInsPass(e.target.value)
                                 }}
