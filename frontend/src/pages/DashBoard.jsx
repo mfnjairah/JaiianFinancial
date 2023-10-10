@@ -177,12 +177,12 @@ const changeRoleOnSubmit = (e) => {
       {currentUser.role === "user" && (
         <div>
           <div className="balance-holder">
-            <h2>₱ {currentUser.accountBalance}.00</h2>
+            <h2>₱ {loggedInUser.accountBalance}.00</h2>
             <h4>Current Balance</h4>
           </div> 
 
           <div className="balance-holder tss">
-            <h1>Welcome, {currentUser.name}!</h1>
+            <h1>Welcome, {loggedInUser.name}!</h1>
             <div className="row-contain-tasks">
               <Link to="/deposit" className="link-tasks">
                 <div className="task-holder">
