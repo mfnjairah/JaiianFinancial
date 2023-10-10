@@ -294,3 +294,49 @@ tr:hover {
 .tit {
   font-weight: 500;
 }
+
+.balance-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.tss {
+  padding-top: 40px;
+}
+
+.balance-holder h2 {
+  font-size: 60px;
+  padding: 10px;
+}
+
+.task-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-ic {
+  font-size: 60px;
+  color: black;
+}
+
+.task-sp {
+  font-size: 20px;
+  font-weight: 700;
+  color: black;
+}
+
+.row-contain-tasks {
+  padding-top: 20px;
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.link-tasks {
+  text-decoration: none;
+}

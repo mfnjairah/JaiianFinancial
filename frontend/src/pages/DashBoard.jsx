@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineTransaction, AiFillEdit } from "react-icons/ai";
 import { BsFillPieChartFill } from "react-icons/bs";
-import { RiBankCard2Fill } from "react-icons/ri";
+import { RiBankCard2Fill, RiLuggageDepositFill } from "react-icons/ri";
+import {
+  BiMoneyWithdraw,
+  BiTransferAlt,
+} from "react-icons/bi";
 import { GrNotes } from "react-icons/gr";
 import { FaUser } from "react-icons/fa";
 import "./DashBoard.css";
+import { Link } from "react-router-dom";
 
 
 
@@ -168,6 +173,40 @@ const changeRoleOnSubmit = (e) => {
 
   return (
     <div>
+
+      {currentUser.role === "user" && (
+        <div>
+          <div className="balance-holder">
+            <h2>₱ {currentUser.accountBalance}.00</h2>
+            <h4>Current Balance</h4>
+          </div> 
+
+          <div className="balance-holder tss">
+            <h1>Welcome, {currentUser.name}!</h1>
+            <div className="row-contain-tasks">
+              <Link to="/deposit" className="link-tasks">
+                <div className="task-holder">
+                <RiLuggageDepositFill className="task-ic"/>
+                <span className="task-sp">Deposit</span>
+                </div>
+              </Link>
+              <Link to="/withdraw" className="link-tasks">
+              <div className="task-holder">
+                <BiMoneyWithdraw className="task-ic"/>
+                <span className="task-sp">Withdraw</span>
+              </div>
+              </Link>
+              <Link to="/transfer" className="link-tasks">
+              <div className="task-holder">
+                <BiTransferAlt className="task-ic"/>
+                <span className="task-sp">Transfer</span>
+              </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+      )}
       {currentUser.role === "admin" && (
               <div>
                 <div className="table-div">

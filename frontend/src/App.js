@@ -82,44 +82,126 @@ function App() {
 
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
+    const isExist = users.findIndex((user) => user.name === firstName + " " + lastName);
 
-    if (password !== confirmPassword) {
-      alert("Passwords do not match");
-      return;
+
+  
+    if (password === confirmPassword) {
+      if(isExist < 0) {
+        if (isLoggedIn) {
+          const newUser = {
+              name: firstName + " " + lastName,
+              userName,
+              email,
+              password,
+              role: "user",
+              accountNumber: userID + 1,
+              accountBalance: 500,
+              income: "",
+              expenseCategories: [],
+              transactionHistory: [],
+              budgetApplication: []
+            };
+
+            //Create a new list of users by adding the newUser
+            const updatedUsers = [...users, newUser];
+
+            // Store the updated list of users in localStorage
+            localStorage.setItem("userz", JSON.stringify(updatedUsers));
+
+            // Clear the form data
+            setRegisterFormData({
+              firstName: "",
+              lastName: "",
+              userName: "",
+              email: "",
+              password: "",
+              confirmPassword: "",
+            });
+            setIsLoggedIn(true);
+            localStorage.setItem("loggedIn", JSON.stringify(isLoggedIn));
+            navigate("/dashboard");
+        }
+        else {
+          const newUser = {
+            name: firstName + " " + lastName,
+            userName,
+            email,
+            password,
+            role: "user",
+            accountNumber: userID + 1,
+            accountBalance: 500,
+            income: "",
+            expenseCategories: [],
+            transactionHistory: [],
+            budgetApplication: []
+          };
+
+          //Create a new list of users by adding the newUser
+          const updatedUsers = [...users, newUser];
+
+          // Store the updated list of users in localStorage
+          localStorage.setItem("userz", JSON.stringify(updatedUsers));
+
+          // Clear the form data
+          setRegisterFormData({
+            firstName: "",
+            lastName: "",
+            userName: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          });
+          alert("Registration Complete! Please click 'OK' to Log-in.")
+          navigate("/");
+        }
+      }
+      else {
+        alert("User Exist");
+      }     
     }
+    else {
+      alert("Passwords do not match");
+    }
+    // if (password !== confirmPassword) {
+    //   alert("Passwords do not match");
+    //   return;
+    // }
 
-    const newUser = {
-      name: firstName + " " + lastName,
-      userName,
-      email,
-      password,
-      role: "user",
-      accountNumber: userID + 1,
-      accountBalance: 500,
-      income: "",
-      expenseCategories: [],
-      transactionHistory: [],
-      budgetApplication: []
-    };
 
-    // Create a new list of users by adding the newUser
-    const updatedUsers = [...users, newUser];
 
-    // Store the updated list of users in localStorage
-    localStorage.setItem("userz", JSON.stringify(updatedUsers));
+    // const newUser = {
+    //   name: firstName + " " + lastName,
+    //   userName,
+    //   email,
+    //   password,
+    //   role: "user",
+    //   accountNumber: userID + 1,
+    //   accountBalance: 500,
+    //   income: "",
+    //   expenseCategories: [],
+    //   transactionHistory: [],
+    //   budgetApplication: []
+    // };
 
-    // Clear the form data
-    setRegisterFormData({
-      firstName: "",
-      lastName: "",
-      userName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
-    setIsLoggedIn(true);
-    localStorage.setItem("loggedIn", JSON.stringify(isLoggedIn));
-    navigate("/dashboard");
+    // // Create a new list of users by adding the newUser
+    // const updatedUsers = [...users, newUser];
+
+    // // Store the updated list of users in localStorage
+    // localStorage.setItem("userz", JSON.stringify(updatedUsers));
+
+    // // Clear the form data
+    // setRegisterFormData({
+    //   firstName: "",
+    //   lastName: "",
+    //   userName: "",
+    //   email: "",
+    //   password: "",
+    //   confirmPassword: "",
+    // });
+    // setIsLoggedIn(true);
+    // localStorage.setItem("loggedIn", JSON.stringify(isLoggedIn));
+    // navigate("/dashboard");
   };
 
   // Logout
