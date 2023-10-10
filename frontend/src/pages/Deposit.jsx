@@ -68,6 +68,7 @@ const Deposit = ({ users, currentUser }) => {
         amount: depositAmount }]
 
       if (userIndex !== -1) {
+        if (customer.accountNumber !== currentUser.accountNumber) {
         const updatedUsers = [...storedUsers];
         updatedUsers[userIndex] = {
           ...updatedUsers[userIndex],
@@ -91,6 +92,10 @@ const Deposit = ({ users, currentUser }) => {
 
         localStorage.setItem("userz", JSON.stringify(updatedUsers));
         alert(`Transaction successful.`);
+        }
+        else{
+          alert("Admin can't transfer to themselves. Please contact another admin.");
+        }
       }
     } else {
       alert("Amount must be higher than 500");

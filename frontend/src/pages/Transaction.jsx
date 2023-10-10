@@ -7,7 +7,7 @@ const Transaction = ({ users, currentUser }) => {
   return (
     <div className="trans-main-container">
       <div className="trans-container">
-        <RiBankCard2Fill className="trans-icon"></RiBankCard2Fill>
+        <RiBankCard2Fill className="trans-icon-header"></RiBankCard2Fill>
         <span className="trans-title">Transaction History:</span>
       
         <table className="trans-table">

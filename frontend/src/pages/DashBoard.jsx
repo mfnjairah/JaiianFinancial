@@ -171,6 +171,9 @@ const changeRoleOnSubmit = (e) => {
       {currentUser.role === "admin" && (
               <div>
                 <div className="table-div">
+                  <div className="greetings">
+                    <h2>Welcome, Administrator {currentUser.name}!</h2>
+                  </div>
                   <table className="table">
                     <thead>
                       <tr className="table-row">
