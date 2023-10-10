@@ -67,6 +67,8 @@ const BudgetApp = ({ users, currentUser }) => {
         
             const updatedBalance = balance - amount;
             setBalance(updatedBalance)
+            setAmount('')
+            setName('')
 
             setTransaction([
                 ...transaction,
